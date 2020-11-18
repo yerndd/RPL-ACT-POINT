@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.DropdownButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="528.0" layoutY="44.0" mnemonicParsing="false" prefWidth="57.0" text="Logout" />
+      <ImageView fitHeight="58.0" fitWidth="191.0" layoutX="20.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@huhu.png" />
+         </image>
+      </ImageView>
+      <TextField alignment="CENTER" layoutX="437.0" layoutY="10.0" text="Mahasiswa" />
+      <HBox layoutX="115.0" layoutY="133.0" prefHeight="154.0" prefWidth="382.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NIM">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nama">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Jenis Kegiatan">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tingkat Kegiatan">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nama Kegiatan">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Upload Sertifikat">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox prefHeight="183.0" prefWidth="202.0">
+               <children>
+                  <TextField>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin></TextField>
+                  <TextField>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin></TextField>
+                  <DropdownButton>
+                      <items>
+                          <MenuItem text="Umum">
+                           <graphic>
+                              <DropdownButton>
+                                 <items>
+                                    <MenuItem text="Peserta" />
+                                 </items>
+                              </DropdownButton>
+                           </graphic>
+                        </MenuItem>
+                          <MenuItem text="Prestasi">
+                           <graphic>
+                              <DropdownButton>
+                                 <items>
+                                    <MenuItem text="Juara 1">
+                                       <graphic>
+                                          <DropdownButton>
+                                             <items>
+                                                <MenuItem text="Peserta" />
+                                             </items>
+                                          </DropdownButton>
+                                       </graphic>
+                                    </MenuItem>
+                                    <MenuItem text="Juara 2" />
+                                    <MenuItem text="Juara 3" />
+                                 </items>
+                              </DropdownButton>
+                           </graphic>
+                        </MenuItem>
+                          <MenuItem text="Organisasi">
+                           <graphic>
+                              <DropdownButton>
+                                 <items>
+                                    <MenuItem text="BPH">
+                                       <graphic>
+                                          <DropdownButton>
+                                             <items>
+                                                <MenuItem text="Peserta" />
+                                             </items>
+                                          </DropdownButton>
+                                       </graphic>
+                                    </MenuItem>
+                                    <MenuItem text="Wakil Ketua" />
+                                    <MenuItem text="Koordinator" />
+                                    <MenuItem text="Anggota" />
+                                 </items>
+                              </DropdownButton>
+                           </graphic>
+                        </MenuItem>
+                      </items>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </DropdownButton>
+                  <DropdownButton>
+                     <items>
+                        <MenuItem text="Internasional">
+                           <graphic>
+                              <DropdownButton>
+                                 <items>
+                                    <MenuItem text="Peserta" />
+                                 </items>
+                              </DropdownButton>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem text="Nasional">
+                           <graphic>
+                              <DropdownButton>
+                                 <items>
+                                    <MenuItem text="Juara 1">
+                                       <graphic>
+                                          <DropdownButton>
+                                             <items>
+                                                <MenuItem text="Peserta" />
+                                             </items>
+                                          </DropdownButton>
+                                       </graphic>
+                                    </MenuItem>
+                                    <MenuItem text="Juara 2" />
+                                    <MenuItem text="Juara 3" />
+                                 </items>
+                              </DropdownButton>
+                           </graphic>
+                        </MenuItem>
+                        <MenuItem text="Lokal">
+                           <graphic>
+                              <DropdownButton>
+                                 <items>
+                                    <MenuItem text="BPH">
+                                       <graphic>
+                                          <DropdownButton>
+                                             <items>
+                                                <MenuItem text="Peserta" />
+                                             </items>
+                                          </DropdownButton>
+                                       </graphic>
+                                    </MenuItem>
+                                    <MenuItem text="Wakil Ketua" />
+                                    <MenuItem text="Koordinator" />
+                                 </items>
+                              </DropdownButton>
+                           </graphic>
+                        </MenuItem>
+                     </items>
+                     <VBox.margin>
+                        <Insets top="7.0" />
+                     </VBox.margin>
+                  </DropdownButton>
+                  <TextField prefWidth="228.0">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" text="Choose File">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" text="Submit">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

@@ -7,34 +7,20 @@ package com.mycompany.rplactpoint.databases;
 
 import java.sql.*;
 
-public class connect
-
-{
-
-public static void main( String args[] )
-
-{
-
-Connection c = null;
-
-try {
-
-Class.forName("org.sqlite.JDBC");
-
-c = DriverManager.getConnection("jdbc:sqlite:SqliteJavaDB.db");
-
-}
-
-catch ( Exception e ) {
-
-System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-
-System.exit(0);
-
-}
-
-System.out.println("database successfully created");
-
-}
-
+public class connect {
+    protected Connection conn = null;
+    
+    public connect() {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            this.conn = DriverManager.getConnection("jdbc:sqlite:db_rplactpoint.db");
+        } catch (ClassNotFoundException | SQLException e) {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    }
+    
+    public Connection getConn() {
+        return this.conn;
+    }
 }

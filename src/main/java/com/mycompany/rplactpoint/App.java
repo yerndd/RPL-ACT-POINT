@@ -1,12 +1,15 @@
 package com.mycompany.rplactpoint;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import java.io.IOException;
+import com.mycompany.rplactpoint.databases.model.UserModel;
 
 /**
  * JavaFX App
@@ -14,16 +17,23 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private TableView table = new TableView();
+    public static UserModel loggedIn;
+    
+    @FXML private TableView<UserModel> tableView;
+    @FXML private TableColumn<UserModel, String> usernameColumn;
+    @FXML private TableColumn<UserModel, String> passwordColumn;
+    @FXML private TableColumn<UserModel, Integer> levelColumn;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("login"));
         stage.setScene(scene);
         stage.show();
     }
-
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    
+    public static void setRoot(String page) throws IOException {
+        scene.setRoot(loadFXML(page));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
@@ -34,5 +44,4 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-
 }

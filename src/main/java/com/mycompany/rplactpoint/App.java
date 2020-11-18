@@ -19,6 +19,7 @@ public class App extends Application {
     private static Scene scene;
     private TableView table = new TableView();
     public static UserModel loggedIn;
+    public static UserModel userEdit;
     
     @FXML private TableView<UserModel> tableView;
     @FXML private TableColumn<UserModel, String> usernameColumn;

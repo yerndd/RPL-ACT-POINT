@@ -5,59 +5,87 @@
  */
 package com.mycompany.rplactpoint.databases.model;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author deokr
  */
 public class UserModel {
-    private int index;
-    private String usernameUser;
-    private String passwordUser;
-    private int levelUser;
+    private SimpleIntegerProperty index;
+    private SimpleIntegerProperty idUser;
+    private SimpleIntegerProperty levelUser;
+    private SimpleStringProperty usernameUser;
+    private SimpleStringProperty passwordUser;
 
     public UserModel() {
     }
-    
-    public UserModel(int index, String usernameUser, String passwordUser) {        
-        this.index = index;
-        this.usernameUser = usernameUser;
-        this.passwordUser = passwordUser;
-    } 
 
     public UserModel(String usernameUser, String passwordUser) {
-        this.usernameUser = usernameUser;
-        this.passwordUser = passwordUser;
-    }    
+        this.usernameUser = new SimpleStringProperty(usernameUser);
+        this.passwordUser = new SimpleStringProperty(passwordUser);
+    }
+
+    public UserModel(int idUser, String usernameUser, String passwordUser) {
+        this.idUser = new SimpleIntegerProperty(idUser);
+        this.usernameUser = new SimpleStringProperty(usernameUser);
+        this.passwordUser = new SimpleStringProperty(passwordUser);
+    }
+    
+    public UserModel(int index, int idUser, String usernameUser, String passwordUser) {
+        this.index = new SimpleIntegerProperty(index);
+        this.idUser = new SimpleIntegerProperty(idUser);
+        this.usernameUser = new SimpleStringProperty(usernameUser);
+        this.passwordUser = new SimpleStringProperty(passwordUser);
+    }
 
     public UserModel(String usernameUser, String passwordUser, int levelUser) {
-        this.usernameUser = usernameUser;
-        this.passwordUser = passwordUser;
-        this.levelUser = levelUser;
+        this.usernameUser = new SimpleStringProperty(usernameUser);
+        this.passwordUser = new SimpleStringProperty(passwordUser);
+        this.levelUser = new SimpleIntegerProperty(levelUser);
     }
 
-    public String getUsernameUser() {
-        return usernameUser;
+    public int getIndex() {
+        return index.get();
     }
 
-    public void setUsernameUser(String usernameUser) {
-        this.usernameUser = usernameUser;
+    public void setIndex(int index) {
+        this.index = new SimpleIntegerProperty(index);
     }
 
-    public String getPasswordUser() {
-        return passwordUser;
+    public int getIdUser() {
+        return idUser.get();
     }
 
-    public void setPasswordUser(String passwordUser) {
-        this.passwordUser = passwordUser;
+    public void setIdUser(int idUser) {
+        this.idUser = new SimpleIntegerProperty(idUser);
     }
 
     public int getLevelUser() {
-        return levelUser;
+        return levelUser.get();
     }
 
     public void setLevelUser(int levelUser) {
-        this.levelUser = levelUser;
+        this.levelUser = new SimpleIntegerProperty(levelUser);
     }
+
+    public String getUsernameUser() {
+        return usernameUser.get();
+    }
+
+    public void setUsernameUser(String usernameUser) {
+        this.usernameUser = new SimpleStringProperty(usernameUser);
+    }
+
+    public String getPasswordUser() {
+        return passwordUser.get();
+    }
+
+    public void setPasswordUser(String passwordUser) {
+        this.passwordUser = new SimpleStringProperty(passwordUser);
+    }
+    
     
     
 }

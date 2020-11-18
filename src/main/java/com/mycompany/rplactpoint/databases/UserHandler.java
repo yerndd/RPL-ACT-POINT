@@ -87,6 +87,35 @@ public class UserHandler extends connect {
         }
         return null;
     }
+    
+    public UserModel getUser(UserModel login) {        
+        String sql = "SELECT * FROM user WHERE usernameUser = ?";
+        
+        try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
+            pstmt.setString(1, login.getUsernameUser());
+            ResultSet rs  = pstmt.executeQuery();
+            
+            if(rs == null) {
+                return null;
+            } else {
+                int size = 0;
+                UserModel user = null;
+                while(rs.next()) {
+                    if(size == 0) {
+                        user = new UserModel(rs.getString("usernameUser"), rs.getString("passwordUser"), rs.getInt("levelUser"));
+                    } else {
+                        user = null;
+                        break;
+                    }
+                    size++;
+                }
+                return user;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 
     public void tambahPetugas(UserModel tambah) {
         String sql = "INSERT INTO user (usernameUser, passwordUser, levelUser) VALUES (?,?,?)";
@@ -94,6 +123,29 @@ public class UserHandler extends connect {
             pstmt.setString(1, tambah.getUsernameUser());
             pstmt.setString(2, tambah.getPasswordUser());
             pstmt.setInt(3, tambah.getLevelUser());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void editPetugas(UserModel data, UserModel from) {
+        String sql = "UPDATE user SET usernameUser = ?, passwordUser = ? WHERE usernameUser = ?";
+        try (PreparedStatement pstmt = super.getConn().prepareStatement(sql)) {
+            pstmt.setString(1, data.getUsernameUser());
+            pstmt.setString(2, data.getPasswordUser());
+            pstmt.setString(3, from.getUsernameUser());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void hapusPetugas(UserModel hapus) {
+        String sql = "DELETE FROM user WHERE usernameUser = ?";
+        
+        try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
+            pstmt.setString(1, hapus.getUsernameUser());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -114,7 +166,7 @@ public class UserHandler extends connect {
                 int index = 1;
                 while(rs.next()) {
                     System.out.println(rs.getString("usernameUser") + "  "+ rs.getString("passwordUser"));
-                    list.add(new UserModel(index, rs.getString("usernameUser"), rs.getString("passwordUser")));
+                    list.add(new UserModel(index, rs.getInt("idUser"), rs.getString("usernameUser"), rs.getString("passwordUser")));
                     index++;
                 }
                 ObservableList<UserModel> petugas = FXCollections.observableList(list);

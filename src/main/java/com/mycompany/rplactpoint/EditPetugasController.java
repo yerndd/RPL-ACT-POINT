@@ -23,44 +23,43 @@ import javafx.scene.text.Text;
  *
  * @author deokr
  */
-public class TambahPetugasController implements Initializable {
+public class EditPetugasController implements Initializable {
 
     @FXML Text loggedIn;
     @FXML TextField username;
     @FXML PasswordField password;
-    
-    private Alert alert;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        username.setText(App.userEdit.getUsernameUser());
         loggedIn.setText(App.loggedIn.getUsernameUser());
     }
     
-    public void tambah() throws IOException {        
+    public void editPetugas() throws IOException {
         UserHandler tbUser = new UserHandler();
-        UserModel tambah = new UserModel(username.getText(), new SHA1Hash(password.getText()).getHasil(), 1);
-        if(tbUser.getUser(tambah) != null) {
-            alert = new Alert(Alert.AlertType.ERROR);
+        UserModel edit = new UserModel(username.getText(), new SHA1Hash(password.getText()).getHasil(), 1);
+        if(tbUser.getUser(edit) != null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Gagal");
             alert.setHeaderText(null);
             alert.setContentText("Petugas dengan username tersebut sudah ada");
             alert.showAndWait();
             return;
         }
-        tbUser.tambahPetugas(tambah);
+        tbUser.editPetugas(edit, App.userEdit);
         
-        alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Berhasil");
         alert.setHeaderText(null);
-        alert.setContentText("Petugas Berhasil ditambahkan");
+        alert.setContentText("Petugas Berhasil diubah");
         alert.showAndWait();
 
-        App.setRoot("Admin");
+        App.setRoot("listPetugas");
     }
     
     public void kembali() throws IOException {
-        App.setRoot("Admin");
+        App.setRoot("listPetugas");
     }
 }

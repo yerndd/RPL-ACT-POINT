@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-module Rplactpoint {
+module com.mycompany.rplactpoint {
     requires org.apache.commons.codec;
     requires commons.codec;
     requires sqlite.jdbc;
@@ -20,6 +20,7 @@ module Rplactpoint {
     requires java.base;
 
     opens com.mycompany.rplactpoint to javafx.fxml;
+    opens com.mycompany.rplactpoint.databases.model to javafx.base;
     exports com.mycompany.rplactpoint;
 }
 

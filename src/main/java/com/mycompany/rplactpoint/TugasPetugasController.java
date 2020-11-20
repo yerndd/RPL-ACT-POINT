@@ -23,8 +23,7 @@ import javafx.scene.text.Text;
 public class TugasPetugasController implements Initializable {
     
     @FXML Text loggedIn;
-    
-    private Alert alert;
+
 
     /**
      * Initializes the controller class.
@@ -43,12 +42,12 @@ public class TugasPetugasController implements Initializable {
         App.setRoot("verifikasiPoin");
     }
     
-    public void melihatFeeds() throws IOException {
-        App.setRoot("melihatFeeds");
+    public void listFeeds() throws IOException {
+        App.setRoot("listFeeds");
     }
     
-    public void mengelolaFeeds() throws IOException {
-        App.setRoot("mengelolaFeeds");
+    public void tambahFeeds() throws IOException {
+        App.setRoot("tambahFeeds");
     }
     
 }

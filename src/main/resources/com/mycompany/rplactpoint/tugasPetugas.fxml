@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.mycompany.rplactpoint.TugasPetugasController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.rplactpoint.TugasPetugasController">
    <children>
       <Button layoutX="531.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" />
       <ImageView fitHeight="58.0" fitWidth="191.0" layoutX="20.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
@@ -18,9 +17,9 @@
       </ImageView>
       <HBox layoutX="37.0" layoutY="147.0" prefHeight="126.0" prefWidth="526.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="167.0" onMouseClicked="#verifikasiPoin" text="Verifikasi Poin" />
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="167.0" onMouseClicked="#melihatFeeds" text="Melihat Feeds" />
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="167.0" onMouseClicked="#mengelolaFeeds" text="Mengelola Feeds" />
+            <Button mnemonicParsing="false" onMouseClicked="#verifikasiPoin" prefHeight="100.0" prefWidth="167.0" text="Verifikasi Poin" />
+            <Button mnemonicParsing="false" onMouseClicked="#listFeeds" prefHeight="100.0" prefWidth="167.0" text="Melihat Feeds" />
+            <Button mnemonicParsing="false" onMouseClicked="#tambahFeeds" prefHeight="100.0" prefWidth="167.0" text="Tambah Feeds" />
          </children>
       </HBox>
       <Text fx:id="loggedIn" layoutX="399.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" wrappingWidth="186.39999999999998" />

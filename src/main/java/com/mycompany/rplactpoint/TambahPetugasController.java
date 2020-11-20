@@ -41,13 +41,16 @@ public class TambahPetugasController implements Initializable {
     public void tambah() throws IOException { 
         UserHandler tbUser = new UserHandler();
         UserModel tambah = new UserModel(username.getText(), new SHA1Hash(password.getText()).getHasil(), 1);
-        if(tbUser.getUser(tambah) != null) {
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Gagal");
-            alert.setHeaderText(null);
-            alert.setContentText("Petugas dengan username tersebut sudah ada");
-            alert.showAndWait();
-            return;
+        UserModel dapat = tbUser.getUser(tambah);
+        if(dapat != null) {
+            if(dapat.getUsernameUser() == null && dapat.getPasswordUser() == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Gagal");
+                alert.setHeaderText(null);
+                alert.setContentText("Petugas dengan username tersebut sudah ada");
+                alert.showAndWait();
+                return;
+            }
         }
         tbUser.tambahUser(tambah);
         

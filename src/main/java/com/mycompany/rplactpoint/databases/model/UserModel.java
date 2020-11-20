@@ -98,7 +98,4 @@ public class UserModel {
     public void setPasswordUser(String passwordUser) {
         this.passwordUser = new SimpleStringProperty(passwordUser);
     }
-    
-    
-    
 }

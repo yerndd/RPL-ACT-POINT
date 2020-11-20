@@ -56,6 +56,31 @@ public class UserHandler extends connect {
             System.out.println(e.getMessage());
         }
         System.out.println("Success");
+        
+        UserModel mahasiswa = new UserModel("mahasiswa", new SHA1Hash("mahasiswa").getHasil(), 2);
+        
+        sql = "DELETE FROM user WHERE usernameUser = ? AND passwordUser = ? AND levelUser = ?";
+        
+        try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
+            pstmt.setString(1, mahasiswa.getUsernameUser());
+            pstmt.setString(2, mahasiswa.getPasswordUser());
+            pstmt.setInt(3, mahasiswa.getLevelUser());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        sql = "INSERT INTO user (usernameUser, passwordUser, levelUser) VALUES (?,?,?)";
+        try (PreparedStatement pstmt = super.getConn().prepareStatement(sql)) {
+            pstmt.setString(1, mahasiswa.getUsernameUser());
+            pstmt.setString(2, mahasiswa.getPasswordUser());
+            pstmt.setInt(3, mahasiswa.getLevelUser());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Success");
+    
     }
     
     public UserModel getLogin(UserModel login) {        

@@ -20,15 +20,25 @@ public class UserModel {
     private SimpleStringProperty passwordUser;
 
     public UserModel() {
+        this.index = null;
+        this.idUser = null;
+        this.levelUser = null;
+        this.usernameUser = null;
+        this.passwordUser = null;
     }
 
     public UserModel(String usernameUser, String passwordUser) {
+        this.index = null;
+        this.idUser = null;
+        this.levelUser = null;
         this.usernameUser = new SimpleStringProperty(usernameUser);
         this.passwordUser = new SimpleStringProperty(passwordUser);
     }
 
     public UserModel(int idUser, String usernameUser, String passwordUser) {
+        this.index = null;
         this.idUser = new SimpleIntegerProperty(idUser);
+        this.levelUser = null;
         this.usernameUser = new SimpleStringProperty(usernameUser);
         this.passwordUser = new SimpleStringProperty(passwordUser);
     }
@@ -36,11 +46,14 @@ public class UserModel {
     public UserModel(int index, int idUser, String usernameUser, String passwordUser) {
         this.index = new SimpleIntegerProperty(index);
         this.idUser = new SimpleIntegerProperty(idUser);
+        this.levelUser = null;
         this.usernameUser = new SimpleStringProperty(usernameUser);
         this.passwordUser = new SimpleStringProperty(passwordUser);
     }
 
     public UserModel(String usernameUser, String passwordUser, int levelUser) {
+        this.index = null;
+        this.idUser = null;
         this.usernameUser = new SimpleStringProperty(usernameUser);
         this.passwordUser = new SimpleStringProperty(passwordUser);
         this.levelUser = new SimpleIntegerProperty(levelUser);

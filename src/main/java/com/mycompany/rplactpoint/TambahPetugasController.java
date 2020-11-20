@@ -38,7 +38,7 @@ public class TambahPetugasController implements Initializable {
         loggedIn.setText(App.loggedIn.getUsernameUser());
     }
     
-    public void tambah() throws IOException {        
+    public void tambah() throws IOException { 
         UserHandler tbUser = new UserHandler();
         UserModel tambah = new UserModel(username.getText(), new SHA1Hash(password.getText()).getHasil(), 1);
         if(tbUser.getUser(tambah) != null) {
@@ -49,7 +49,7 @@ public class TambahPetugasController implements Initializable {
             alert.showAndWait();
             return;
         }
-        tbUser.tambahPetugas(tambah);
+        tbUser.tambahUser(tambah);
         
         alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Berhasil");

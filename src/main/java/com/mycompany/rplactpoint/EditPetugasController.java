@@ -40,13 +40,16 @@ public class EditPetugasController implements Initializable {
     public void editPetugas() throws IOException {
         UserHandler tbUser = new UserHandler();
         UserModel edit = new UserModel(username.getText(), new SHA1Hash(password.getText()).getHasil(), 1);
-        if(tbUser.getUser(edit) != null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Gagal");
-            alert.setHeaderText(null);
-            alert.setContentText("Petugas dengan username tersebut sudah ada");
-            alert.showAndWait();
-            return;
+        UserModel dapat = tbUser.getUser(edit);
+        if(dapat != null) {
+            if(dapat.getUsernameUser() == null && dapat.getPasswordUser() == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Gagal");
+                alert.setHeaderText(null);
+                alert.setContentText("Petugas dengan username tersebut sudah ada");
+                alert.showAndWait();
+                return;
+            }
         }
         tbUser.editPetugas(edit, App.userEdit);
         

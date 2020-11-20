@@ -104,7 +104,7 @@ public class UserHandler extends connect {
                     if(size == 0) {
                         user = new UserModel(rs.getString("usernameUser"), rs.getString("passwordUser"), rs.getInt("levelUser"));
                     } else {
-                        user = null;
+                        user = new UserModel();
                         break;
                     }
                     size++;
@@ -117,7 +117,7 @@ public class UserHandler extends connect {
         return null;
     }
 
-    public void tambahPetugas(UserModel tambah) {
+    public void tambahUser(UserModel tambah) {
         String sql = "INSERT INTO user (usernameUser, passwordUser, levelUser) VALUES (?,?,?)";
         try (PreparedStatement pstmt = super.getConn().prepareStatement(sql)) {
             pstmt.setString(1, tambah.getUsernameUser());

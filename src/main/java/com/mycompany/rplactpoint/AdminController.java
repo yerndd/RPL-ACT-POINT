@@ -5,14 +5,11 @@
  */
 package com.mycompany.rplactpoint;
 
-import com.mycompany.rplactpoint.databases.UserHandler;
-import com.mycompany.rplactpoint.databases.model.UserModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 
 /**
@@ -23,8 +20,6 @@ import javafx.scene.text.Text;
 public class AdminController implements Initializable {
 
     @FXML Text loggedIn;
-    
-    private Alert alert;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

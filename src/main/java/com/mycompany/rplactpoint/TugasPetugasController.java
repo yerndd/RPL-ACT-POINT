@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.rplactpoint;
 
 import com.mycompany.rplactpoint.databases.UserHandler;
@@ -15,7 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 
-/**
+/*
  * FXML Controller class
  *
  * @author Me
@@ -23,8 +18,7 @@ import javafx.scene.text.Text;
 public class TugasPetugasController implements Initializable {
     
     @FXML Text loggedIn;
-    
-    private Alert alert;
+
 
     /**
      * Initializes the controller class.
@@ -43,12 +37,12 @@ public class TugasPetugasController implements Initializable {
         App.setRoot("verifikasiPoin");
     }
     
-    public void melihatFeeds() throws IOException {
-        App.setRoot("melihatFeeds");
+    public void listFeeds() throws IOException {
+        App.setRoot("listFeeds");
     }
     
-    public void mengelolaFeeds() throws IOException {
-        App.setRoot("mengelolaFeeds");
+    public void tambahFeeds() throws IOException {
+        App.setRoot("tambahFeeds");
     }
     
 }

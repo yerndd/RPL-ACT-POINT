@@ -20,7 +20,7 @@ import javafx.scene.text.Text;
 public class AdminController implements Initializable {
 
     @FXML Text loggedIn;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loggedIn.setText(App.loggedIn.getUsernameUser());

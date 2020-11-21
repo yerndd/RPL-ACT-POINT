@@ -34,4 +34,8 @@ public class MahasiswaController implements Initializable {
     public void requestPoin() throws IOException {
         App.setRoot("requestPoin");
     }
+    
+    public void melihatFeeds() throws IOException {
+        App.setRoot("melihatFeeds");
+    }
 }

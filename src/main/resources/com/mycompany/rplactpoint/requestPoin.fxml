@@ -14,7 +14,7 @@
 
 <AnchorPane id="AnchorPane" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="511.0" layoutY="44.0" mnemonicParsing="false" onMouseClicked="#logout" prefHeight="26.0" prefWidth="75.0" text="Kembali" />
+      <Button layoutX="511.0" layoutY="44.0" mnemonicParsing="false" onMouseClicked="#kembali" prefHeight="26.0" prefWidth="75.0" text="Kembali" />
       <ImageView fitHeight="58.0" fitWidth="191.0" layoutX="20.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@huhu.png" />

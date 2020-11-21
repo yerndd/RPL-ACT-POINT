@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.DropdownButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -36,17 +35,22 @@
                   </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Jenis Kegiatan">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="14.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sebagai">
+                     <VBox.margin>
+                        <Insets top="14.0" />
                      </VBox.margin>
                   </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tingkat Kegiatan">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="14.0" />
                      </VBox.margin>
                   </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nama Kegiatan">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="14.0" />
                      </VBox.margin>
                   </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Upload Sertifikat">
@@ -66,115 +70,21 @@
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin></TextField>
-                  <DropdownButton fx:id="jenisKegiatan">
-                      <items>
-                          <MenuItem text="Umum">
-                           <graphic>
-                              <DropdownButton>
-                                 <items>
-                                    <MenuItem text="Peserta" />
-                                 </items>
-                              </DropdownButton>
-                           </graphic>
-                        </MenuItem>
-                          <MenuItem text="Prestasi">
-                           <graphic>
-                              <DropdownButton>
-                                 <items>
-                                    <MenuItem text="Juara 1">
-                                       <graphic>
-                                          <DropdownButton>
-                                             <items>
-                                                <MenuItem text="Peserta" />
-                                             </items>
-                                          </DropdownButton>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem text="Juara 2" />
-                                    <MenuItem text="Juara 3" />
-                                 </items>
-                              </DropdownButton>
-                           </graphic>
-                        </MenuItem>
-                          <MenuItem text="Organisasi">
-                           <graphic>
-                              <DropdownButton>
-                                 <items>
-                                    <MenuItem text="BPH">
-                                       <graphic>
-                                          <DropdownButton>
-                                             <items>
-                                                <MenuItem text="Peserta" />
-                                             </items>
-                                          </DropdownButton>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem text="Wakil Ketua" />
-                                    <MenuItem text="Koordinator" />
-                                    <MenuItem text="Anggota" />
-                                 </items>
-                              </DropdownButton>
-                           </graphic>
-                        </MenuItem>
-                      </items>
+                  <ComboBox prefWidth="150.0">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
-                  </DropdownButton>
-                  <DropdownButton fx:id="tingkatKegiatan">
-                     <items>
-                        <MenuItem text="Internasional">
-                           <graphic>
-                              <DropdownButton>
-                                 <items>
-                                    <MenuItem text="Peserta" />
-                                 </items>
-                              </DropdownButton>
-                           </graphic>
-                        </MenuItem>
-                        <MenuItem text="Nasional">
-                           <graphic>
-                              <DropdownButton>
-                                 <items>
-                                    <MenuItem text="Juara 1">
-                                       <graphic>
-                                          <DropdownButton>
-                                             <items>
-                                                <MenuItem text="Peserta" />
-                                             </items>
-                                          </DropdownButton>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem text="Juara 2" />
-                                    <MenuItem text="Juara 3" />
-                                 </items>
-                              </DropdownButton>
-                           </graphic>
-                        </MenuItem>
-                        <MenuItem text="Lokal">
-                           <graphic>
-                              <DropdownButton>
-                                 <items>
-                                    <MenuItem text="BPH">
-                                       <graphic>
-                                          <DropdownButton>
-                                             <items>
-                                                <MenuItem text="Peserta" />
-                                             </items>
-                                          </DropdownButton>
-                                       </graphic>
-                                    </MenuItem>
-                                    <MenuItem text="Wakil Ketua" />
-                                    <MenuItem text="Koordinator" />
-                                 </items>
-                              </DropdownButton>
-                           </graphic>
-                        </MenuItem>
-                     </items>
+                  </ComboBox>
+                  <ComboBox prefWidth="150.0">
                      <VBox.margin>
-                        <Insets top="7.0" />
+                        <Insets top="5.0" />
                      </VBox.margin>
-                  </DropdownButton>
+                  </ComboBox>
+                  <ComboBox prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </ComboBox>
                   <TextField fx:id="namaKegiatan" prefWidth="228.0">
                      <VBox.margin>
                         <Insets top="5.0" />
@@ -187,7 +97,7 @@
                   </Button>
                   <Button mnemonicParsing="false" text="Submit">
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
                </children>

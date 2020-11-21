@@ -26,9 +26,8 @@ public class RequestPoinController implements Initializable {
         loggedIn.setText(App.loggedIn.getUsernameUser());
     }    
     
-    public void logout() throws IOException {
-        App.loggedIn = null;
-        App.setRoot("login");
+    public void kembali() throws IOException {
+        App.setRoot("mahasiswa");
     }
     
     public void requestPoin() throws IOException {

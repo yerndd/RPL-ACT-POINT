@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.rplactpoint.MelihatFeedsController">
+   <children>
+      <ImageView fitHeight="58.0" fitWidth="191.0" layoutX="20.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@huhu.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="20.0" layoutY="100.0" prefHeight="277.0" prefWidth="560.0">
+         <children>
+            <TableView fx:id="melihatFeedsTable" prefHeight="287.0" prefWidth="560.0">
+               <columns>
+                  <TableColumn fx:id="judulKegiatan" prefWidth="160.79998779296875" text="Judul" />
+                  <TableColumn fx:id="deskripsiKegiatan" prefWidth="242.4000244140625" text="Deskripsi" />
+                  <TableColumn fx:id="linkKegiatan" prefWidth="157.5999755859375" text="Link Kegiatan" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <Text fx:id="loggedIn" layoutX="399.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" wrappingWidth="186.39999999999998" />
+   </children>
+</AnchorPane>

@@ -21,7 +21,7 @@
             <HBox prefHeight="125.0" prefWidth="571.0">
                <children>
                   <Button mnemonicParsing="false" onMouseClicked="#requestPoin" prefHeight="100.0" prefWidth="180.0" text="Request Poin" />
-                  <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="180.0" text="Melihat Feeds" />
+                  <Button mnemonicParsing="false" onMouseClicked="#melihatFeeds" prefHeight="100.0" prefWidth="180.0" text="Melihat Feeds" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="333.0">
@@ -32,6 +32,6 @@
             </HBox>
          </children>
       </VBox>
-      <Text fx:id="loggedIn1" layoutX="398.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" wrappingWidth="186.39999999999998" />
+      <Text fx:id="loggedIn" layoutX="398.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" wrappingWidth="186.39999999999998" />
    </children>
 </AnchorPane>

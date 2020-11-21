@@ -6,7 +6,6 @@
 package com.mycompany.rplactpoint.databases;
 
 import java.sql.*;
-import com.mycompany.rplactpoint.utilities.SHA1Hash;
 import com.mycompany.rplactpoint.databases.model.FeedsModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +66,6 @@ public class FeedsHandler extends connect {
         String sql = "SELECT * FROM feeds";
         
         try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
-            pstmt.setInt(1, 1);
             ResultSet rs  = pstmt.executeQuery();
             
             if(rs == null) {
@@ -76,7 +74,7 @@ public class FeedsHandler extends connect {
                 List<FeedsModel> list = new ArrayList<>();
                 int index = 1;
                 while(rs.next()) {
-                    list.add(new FeedsModel(rs.getInt ("index"),rs.getInt("idFeeds"), rs.getString("judulKegiatan"), rs.getString("deskripsiKegiatan"), rs.getString("linkKegiatan")));
+                    list.add(new FeedsModel(index, rs.getInt("idFeeds"), rs.getString("judulKegiatan"), rs.getString("deskripsiKegiatan"), rs.getString("linkKegiatan")));
                     index++;
                 }
                 ObservableList<FeedsModel> feeds = FXCollections.observableList(list);

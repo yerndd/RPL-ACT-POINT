@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.rplactpoint.RequestPoinController">
    <children>
       <Button layoutX="511.0" layoutY="44.0" mnemonicParsing="false" onMouseClicked="#kembali" prefHeight="26.0" prefWidth="75.0" text="Kembali" />
       <ImageView fitHeight="58.0" fitWidth="191.0" layoutX="20.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
@@ -62,25 +62,25 @@
             </VBox>
             <VBox prefHeight="183.0" prefWidth="202.0">
                <children>
-                  <TextField fx:id="username">
+                  <TextField fx:id="nim">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin></TextField>
-                  <TextField fx:id="namaMahasiswa">
+                  <TextField fx:id="nama">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin></TextField>
-                  <ComboBox prefWidth="150.0">
+                  <ComboBox fx:id="jenisKegiatan" onAction="#setSebagaiList" prefWidth="150.0">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </ComboBox>
-                  <ComboBox prefWidth="150.0">
+                  <ComboBox fx:id="sebagaiKegiatan" prefWidth="150.0">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </ComboBox>
-                  <ComboBox prefWidth="150.0">
+                  <ComboBox fx:id="tingkatKegiatan" prefWidth="150.0">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
@@ -90,12 +90,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" text="Choose File">
+                  <Button fx:id="fotoKegiatan" mnemonicParsing="false" onMouseClicked="#chooseFile" text="Choose File">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Submit">
+                  <Button mnemonicParsing="false" onMouseClicked="#requestPoin" text="Submit">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>

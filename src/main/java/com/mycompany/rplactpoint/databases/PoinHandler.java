@@ -6,8 +6,7 @@
 package com.mycompany.rplactpoint.databases;
 
 import java.sql.*;
-import com.mycompany.rplactpoint.utilities.SHA1Hash;
-import com.mycompany.rplactpoint.databases.model.UserModel;
+import com.mycompany.rplactpoint.databases.model.PoinModel;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -20,11 +19,15 @@ import javafx.collections.ObservableList;
 public class PoinHandler extends connect {
     
     public PoinHandler() {
-        String sql = "CREATE TABLE IF NOT EXISTS user ("
-                + "idUser INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + "usernameUser TEXT NOT NULL,"
-                + "passwordUser TEXT NOT NULL,"
-                + "levelUser INTEGER NOT NULL"
+        String sql = "CREATE TABLE IF NOT EXISTS poin ("
+                + "idPoin INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "nim TEXT NOT NULL,"
+                + "nama TEXT NOT NULL,"
+                + "jenisKegiatan TEXT NOT NULL,"
+                + "sebagaiKegiatan TEXT NOT NULL,"
+                + "tingkatKegiatan TEXT NOT NULL,"
+                + "namaKegiatan TEXT NOT NULL,"
+                + "fotoSertif TEXT NOT NULL"
                 + ");";
         try {
             Statement stmt = super.getConn().createStatement();
@@ -32,75 +35,31 @@ public class PoinHandler extends connect {
         } catch(SQLException e) {
             System.out.print(e.getMessage());
         }
-        
-        UserModel admin = new UserModel("admin", new SHA1Hash("admin").getHasil(), 0);
-        
-        sql = "DELETE FROM user WHERE usernameUser = ? AND passwordUser = ? AND levelUser = ?";
-        
-        try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
-            pstmt.setString(1, admin.getUsernameUser());
-            pstmt.setString(2, admin.getPasswordUser());
-            pstmt.setInt(3, admin.getLevelUser());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        sql = "INSERT INTO user (usernameUser, passwordUser, levelUser) VALUES (?,?,?)";
-        try (PreparedStatement pstmt = super.getConn().prepareStatement(sql)) {
-            pstmt.setString(1, admin.getUsernameUser());
-            pstmt.setString(2, admin.getPasswordUser());
-            pstmt.setInt(3, admin.getLevelUser());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
         System.out.println("Success");
-        
-        UserModel mahasiswa = new UserModel("mahasiswa", new SHA1Hash("mahasiswa").getHasil(), 2);
-        
-        sql = "DELETE FROM user WHERE usernameUser = ? AND passwordUser = ? AND levelUser = ?";
-        
-        try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
-            pstmt.setString(1, mahasiswa.getUsernameUser());
-            pstmt.setString(2, mahasiswa.getPasswordUser());
-            pstmt.setInt(3, mahasiswa.getLevelUser());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        sql = "INSERT INTO user (usernameUser, passwordUser, levelUser) VALUES (?,?,?)";
-        try (PreparedStatement pstmt = super.getConn().prepareStatement(sql)) {
-            pstmt.setString(1, mahasiswa.getUsernameUser());
-            pstmt.setString(2, mahasiswa.getPasswordUser());
-            pstmt.setInt(3, mahasiswa.getLevelUser());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        System.out.println("Success");
-    
     }
     
-    public UserModel getLogin(UserModel login) {        
-        String sql = "SELECT * FROM user WHERE usernameUser = ? AND passwordUser = ?";
+    public PoinModel getPoin(PoinModel login) {        
+        String sql = "SELECT * FROM poin WHERE nim = ? AND nama = ? AND jenisKegiatan = ? AND sebagaiKegiatan = ? AND tingkatKegiatan = ? AND namaKegiatan = ?";
         
         try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
-            pstmt.setString(1, login.getUsernameUser());
-            pstmt.setString(2, login.getPasswordUser());
+            pstmt.setString(1, login.getNim());
+            pstmt.setString(2, login.getNama());
+            pstmt.setString(3, login.getJenisKegiatan());
+            pstmt.setString(4, login.getSebagaiKegiatan());
+            pstmt.setString(5, login.getTingkatKegiatan());
+            pstmt.setString(6, login.getNamaKegiatan());
             ResultSet rs  = pstmt.executeQuery();
             
             if(rs == null) {
                 return null;
             } else {
                 int size = 0;
-                UserModel user = null;
+                PoinModel user = null;
                 while(rs.next()) {
                     if(size == 0) {
-                        user = new UserModel(rs.getString("usernameUser"), rs.getString("passwordUser"), rs.getInt("levelUser"));
+                        user = new PoinModel(0, rs.getInt("idPoin"), rs.getString("nim"), rs.getString("nama"), rs.getString("jenisKegiatan"), rs.getString("sebagaiKegiatan"), rs.getString("tingkatKegiatan"), rs.getString("namaKegiatan"), rs.getString("fotoSertif"));
                     } else {
-                        user = null;
+                        user = new PoinModel();
                         break;
                     }
                     size++;
@@ -113,94 +72,19 @@ public class PoinHandler extends connect {
         return null;
     }
     
-    public UserModel getUser(UserModel login) {        
-        String sql = "SELECT * FROM user WHERE usernameUser = ?";
-        
-        try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
-            pstmt.setString(1, login.getUsernameUser());
-            ResultSet rs  = pstmt.executeQuery();
-            
-            if(rs == null) {
-                return null;
-            } else {
-                int size = 0;
-                UserModel user = null;
-                while(rs.next()) {
-                    if(size == 0) {
-                        user = new UserModel(rs.getString("usernameUser"), rs.getString("passwordUser"), rs.getInt("levelUser"));
-                    } else {
-                        user = new UserModel();
-                        break;
-                    }
-                    size++;
-                }
-                return user;
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
-
-    public void tambahUser(UserModel tambah) {
-        String sql = "INSERT INTO user (usernameUser, passwordUser, levelUser) VALUES (?,?,?)";
+    public void tambahRequest(PoinModel tambah) {
+        String sql = "INSERT INTO poin (nim, nama, jenisKegiatan, sebagaiKegiatan, tingkatKegiatan, namaKegiatan, fotoSertif) VALUES (?,?,?,?,?,?,?)";
         try (PreparedStatement pstmt = super.getConn().prepareStatement(sql)) {
-            pstmt.setString(1, tambah.getUsernameUser());
-            pstmt.setString(2, tambah.getPasswordUser());
-            pstmt.setInt(3, tambah.getLevelUser());
+            pstmt.setString(1, tambah.getNim());
+            pstmt.setString(2, tambah.getNama());
+            pstmt.setString(3, tambah.getJenisKegiatan());
+            pstmt.setString(1, tambah.getSebagaiKegiatan());
+            pstmt.setString(2, tambah.getTingkatKegiatan());
+            pstmt.setString(3, tambah.getNamaKegiatan());
+            pstmt.setString(1, tambah.getFotoSertif());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    
-    public void editPetugas(UserModel data, UserModel from) {
-        String sql = "UPDATE user SET usernameUser = ?, passwordUser = ? WHERE usernameUser = ?";
-        try (PreparedStatement pstmt = super.getConn().prepareStatement(sql)) {
-            pstmt.setString(1, data.getUsernameUser());
-            pstmt.setString(2, data.getPasswordUser());
-            pstmt.setString(3, from.getUsernameUser());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    public void hapusPetugas(UserModel hapus) {
-        String sql = "DELETE FROM user WHERE usernameUser = ?";
-        
-        try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
-            pstmt.setString(1, hapus.getUsernameUser());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    public ObservableList<UserModel> getPetugas() {        
-        String sql = "SELECT * FROM user WHERE levelUser = ?";
-        
-        try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
-            pstmt.setInt(1, 1);
-            ResultSet rs  = pstmt.executeQuery();
-            
-            if(rs == null) {
-                return null;
-            } else {
-                List<UserModel> list = new ArrayList<>();
-                int index = 1;
-                while(rs.next()) {
-                    System.out.println(rs.getString("usernameUser") + "  "+ rs.getString("passwordUser"));
-                    list.add(new UserModel(index, rs.getInt("idUser"), rs.getString("usernameUser"), rs.getString("passwordUser")));
-                    index++;
-                }
-                ObservableList<UserModel> petugas = FXCollections.observableList(list);
-                return petugas;
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
-    
 }

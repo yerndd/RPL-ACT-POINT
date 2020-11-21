@@ -20,6 +20,7 @@ public class App extends Application {
     private TableView table = new TableView();
     public static UserModel loggedIn;
     public static UserModel userEdit;
+    public static Stage stageee;
     
     @FXML private TableView<UserModel> tableView;
     @FXML private TableColumn<UserModel, String> usernameColumn;
@@ -31,6 +32,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("login"));
         stage.setScene(scene);
         stage.show();
+        stageee = stage;
     }
     
     public static void setRoot(String page) throws IOException {

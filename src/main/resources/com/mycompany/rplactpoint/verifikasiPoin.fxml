@@ -10,19 +10,20 @@
 
 <AnchorPane id="AnchorPane" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.rplactpoint.VerifikasiPoinController">
    <children>
-      <Button layoutX="528.0" layoutY="44.0" mnemonicParsing="false" onMouseClicked="#logout" prefWidth="57.0" text="Logout" />
+      <Button layoutX="518.0" layoutY="44.0" mnemonicParsing="false" onMouseClicked="#kembali" prefHeight="26.0" prefWidth="68.0" text="Kembali" />
       <ImageView fitHeight="58.0" fitWidth="191.0" layoutX="20.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@huhu.png" />
          </image>
       </ImageView>
-      <TableView layoutX="116.0" layoutY="106.0" prefHeight="218.0" prefWidth="374.0">
+      <TableView fx:id="verifikasipoinTable" layoutX="60.0" layoutY="106.0" prefHeight="218.0" prefWidth="502.0">
         <columns>
-          <TableColumn prefWidth="120.0" text="NIM" />
-          <TableColumn prefWidth="254.4000244140625" text="Nama" />
+            <TableColumn prefWidth="32.79998779296875" text="No" />
+          <TableColumn fx:id="nim" prefWidth="107.20001220703125" text="NIM" />
+          <TableColumn fx:id="namaKegiatan" minWidth="0.0" prefWidth="178.4000244140625" text="Nama Kegiatan" />
+            <TableColumn fx:id="detailPoin" prefWidth="181.60001220703123" text="Aksi" />
         </columns>
       </TableView>
-      <Text fx:id="loggedIn" layoutX="528.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="57.59999999999991" />
-      <Button layoutX="116.0" layoutY="332.0" mnemonicParsing="false" text="Detail" />
+      <Text fx:id="loggedIn" layoutX="399.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" wrappingWidth="186.39999999999998" />
    </children>
 </AnchorPane>

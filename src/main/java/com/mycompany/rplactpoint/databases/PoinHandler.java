@@ -59,7 +59,7 @@ public class PoinHandler extends connect {
                 PoinModel user = null;
                 while(rs.next()) {
                     if(size == 0) {
-                        user = new PoinModel(0, rs.getInt("idPoin"), rs.getString("nim"), rs.getString("nama"), rs.getString("jenisKegiatan"), rs.getString("sebagaiKegiatan"), rs.getString("tingkatKegiatan"), rs.getString("namaKegiatan"), rs.getString("fotoSertif"));
+                        user = new PoinModel(0, rs.getInt("idPoin"), rs.getString("nim"), rs.getString("nama"), rs.getString("tanggal"), rs.getString("tanggalKegiatan"), rs.getString("jenisKegiatan"), rs.getString("sebagaiKegiatan"), rs.getString("tingkatKegiatan"), rs.getString("namaKegiatan"), rs.getInt("poinKegiatan"), rs.getString("fotoSertif"));
                     } else {
                         user = new PoinModel();
                         break;
@@ -84,7 +84,7 @@ public class PoinHandler extends connect {
             pstmt.setString(5, tambah.getSebagaiKegiatan());
             pstmt.setString(6, tambah.getTingkatKegiatan());
             pstmt.setString(7, tambah.getNamaKegiatan());
-            pstmt.setString(8, tambah.getPoinKegiatan());
+            pstmt.setInt(8, tambah.getPoinKegiatan());
             pstmt.setString(9, tambah.getFotoSertif());
             pstmt.executeUpdate();
         } catch (SQLException e) {

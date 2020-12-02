@@ -19,9 +19,9 @@
             <Image url="@huhu.png" />
          </image>
       </ImageView>
-      <HBox layoutX="115.0" layoutY="133.0" prefHeight="154.0" prefWidth="382.0">
+      <HBox layoutX="115.0" layoutY="83.0" prefHeight="293.0" prefWidth="382.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="274.0" prefWidth="100.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NIM">
                      <VBox.margin>
@@ -53,6 +53,11 @@
                         <Insets top="14.0" />
                      </VBox.margin>
                   </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tanggal Kegiatan">
+                     <VBox.margin>
+                        <Insets top="12.0" />
+                     </VBox.margin>
+                  </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Upload Sertifikat">
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -62,11 +67,11 @@
             </VBox>
             <VBox prefHeight="183.0" prefWidth="202.0">
                <children>
-                  <TextField fx:id="nim">
+                  <TextField fx:id="nim" promptText="ex 71200000">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin></TextField>
-                  <TextField fx:id="nama">
+                  <TextField fx:id="nama" promptText="ex. Dadang Sunarno">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin></TextField>
@@ -85,7 +90,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </ComboBox>
-                  <TextField fx:id="namaKegiatan" prefWidth="228.0">
+                  <TextField fx:id="namaKegiatan" prefWidth="228.0" promptText="ex. Orientasi Kehidupan Akademika">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="tanggalKegiatan" prefWidth="228.0" promptText="dd-mm-yyyy">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>

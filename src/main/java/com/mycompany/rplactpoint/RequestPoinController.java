@@ -23,6 +23,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javafx.scene.control.Alert;
 
 /**
@@ -37,6 +39,7 @@ public class RequestPoinController implements Initializable {
     @FXML TextField nim;
     @FXML TextField nama;
     @FXML TextField namaKegiatan;
+    @FXML TextField tanggalKegiatan;
     
     @FXML ComboBox jenisKegiatan;
     @FXML ComboBox sebagaiKegiatan;
@@ -95,15 +98,18 @@ public class RequestPoinController implements Initializable {
     
     public void requestPoin() throws IOException {
         PoinHandler tbPoin = new PoinHandler();
+        SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy");
+        Date date = new Date(System.currentTimeMillis());
+        String tanggal = formatter.format(date);
         PoinModel tambah;
         if (filePilihan != null) {
             File dest = new File("./assets/"+filePilihan.getName());
             dest.getParentFile().mkdirs(); 
             dest.createNewFile();
             copyFileUsingStream(filePilihan, dest);
-            tambah = new PoinModel(0, 0, nim.getText(), nama.getText(), jenisKegiatan.getValue().toString(), sebagaiKegiatan.getValue().toString(), tingkatKegiatan.getValue().toString(), namaKegiatan.getText(), filePilihan.getName());
+            tambah = new PoinModel(0, 0, nim.getText(), nama.getText(), tanggal, tanggalKegiatan.getText(), jenisKegiatan.getValue().toString(), sebagaiKegiatan.getValue().toString(), tingkatKegiatan.getValue().toString(), namaKegiatan.getText(), 0, filePilihan.getName());
         } else {
-            tambah = new PoinModel(0, 0, nim.getText(), nama.getText(), jenisKegiatan.getValue().toString(), sebagaiKegiatan.getValue().toString(), tingkatKegiatan.getValue().toString(), namaKegiatan.getText(), "");
+            tambah = new PoinModel(0, 0, nim.getText(), nama.getText(), tanggal, tanggalKegiatan.getText(), jenisKegiatan.getValue().toString(), sebagaiKegiatan.getValue().toString(), tingkatKegiatan.getValue().toString(), namaKegiatan.getText(), 0, "");
         }
         
         PoinModel dapat = tbPoin.getPoin(tambah);

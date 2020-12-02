@@ -19,6 +19,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import javafx.scene.control.Alert;
 
 /**
@@ -91,7 +95,17 @@ public class RequestPoinController implements Initializable {
     
     public void requestPoin() throws IOException {
         PoinHandler tbPoin = new PoinHandler();
-        PoinModel tambah = new PoinModel(0, 0, nim.getText(), nama.getText(), jenisKegiatan.getValue().toString(), sebagaiKegiatan.getValue().toString(), tingkatKegiatan.getValue().toString(), namaKegiatan.getText(), filePilihan.getName());
+        PoinModel tambah;
+        if (filePilihan != null) {
+            File dest = new File("./assets/"+filePilihan.getName());
+            dest.getParentFile().mkdirs(); 
+            dest.createNewFile();
+            copyFileUsingStream(filePilihan, dest);
+            tambah = new PoinModel(0, 0, nim.getText(), nama.getText(), jenisKegiatan.getValue().toString(), sebagaiKegiatan.getValue().toString(), tingkatKegiatan.getValue().toString(), namaKegiatan.getText(), filePilihan.getName());
+        } else {
+            tambah = new PoinModel(0, 0, nim.getText(), nama.getText(), jenisKegiatan.getValue().toString(), sebagaiKegiatan.getValue().toString(), tingkatKegiatan.getValue().toString(), namaKegiatan.getText(), "");
+        }
+        
         PoinModel dapat = tbPoin.getPoin(tambah);
         if(dapat != null) {
             if(dapat.getNama() == null && dapat.getNim() == null) {
@@ -120,5 +134,22 @@ public class RequestPoinController implements Initializable {
         fileChooser.getExtensionFilters().add(pictureFilter);
         
         this.filePilihan = fileChooser.showOpenDialog(App.stageee);
+    }
+    
+    private static void copyFileUsingStream(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } finally {
+            is.close();
+            os.close();
+        }
     }
 }

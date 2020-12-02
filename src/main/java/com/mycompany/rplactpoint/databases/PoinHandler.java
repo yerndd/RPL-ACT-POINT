@@ -24,9 +24,11 @@ public class PoinHandler extends connect {
                 + "nim TEXT NOT NULL,"
                 + "nama TEXT NOT NULL,"
                 + "jenisKegiatan TEXT NOT NULL,"
+                + "tanggalKegiatan TEXT NOT NULL,"
                 + "sebagaiKegiatan TEXT NOT NULL,"
                 + "tingkatKegiatan TEXT NOT NULL,"
                 + "namaKegiatan TEXT NOT NULL,"
+                + "poinKegiatan INTEGER NOT NULL,"
                 + "fotoSertif TEXT NOT NULL"
                 + ");";
         try {
@@ -73,15 +75,17 @@ public class PoinHandler extends connect {
     }
     
     public void tambahRequest(PoinModel tambah) {
-        String sql = "INSERT INTO poin (nim, nama, jenisKegiatan, sebagaiKegiatan, tingkatKegiatan, namaKegiatan, fotoSertif) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO poin (nim, nama, jenisKegiatan, tanggalKegiatan, sebagaiKegiatan, tingkatKegiatan, namaKegiatan, poinKegiatan, fotoSertif) VALUES (?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement pstmt = super.getConn().prepareStatement(sql)) {
             pstmt.setString(1, tambah.getNim());
             pstmt.setString(2, tambah.getNama());
             pstmt.setString(3, tambah.getJenisKegiatan());
-            pstmt.setString(1, tambah.getSebagaiKegiatan());
-            pstmt.setString(2, tambah.getTingkatKegiatan());
-            pstmt.setString(3, tambah.getNamaKegiatan());
-            pstmt.setString(1, tambah.getFotoSertif());
+            pstmt.setString(4, tambah.getTanggalKegiatan());
+            pstmt.setString(5, tambah.getSebagaiKegiatan());
+            pstmt.setString(6, tambah.getTingkatKegiatan());
+            pstmt.setString(7, tambah.getNamaKegiatan());
+            pstmt.setString(8, tambah.getPoinKegiatan());
+            pstmt.setString(9, tambah.getFotoSertif());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

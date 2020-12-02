@@ -18,10 +18,13 @@ public class PoinModel {
     private SimpleIntegerProperty idPoin;
     private SimpleStringProperty nim;
     private SimpleStringProperty nama;
+    private SimpleStringProperty tanggal;
+    private SimpleStringProperty tanggalKegiatan;
     private SimpleStringProperty jenisKegiatan;
     private SimpleStringProperty sebagaiKegiatan;
     private SimpleStringProperty tingkatKegiatan;
     private SimpleStringProperty namaKegiatan;
+    private SimpleStringProperty poinKegiatan;
     private SimpleStringProperty fotoSertif;
 
     public PoinModel() {
@@ -62,6 +65,22 @@ public class PoinModel {
 
     public void setIdPoin(int idPoin) {
         this.idPoin = new SimpleIntegerProperty(idPoin);
+    }
+
+    public String getTanggal() {
+        return tanggal.get();
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = new SimpleStringProperty(tanggal);
+    }
+
+    public String getTanggalKegiatan() {
+        return tanggalKegiatan.get();
+    }
+
+    public void setTanggalKegiatan(String tanggalKegiatan) {
+        this.tanggalKegiatan = new SimpleStringProperty(tanggalKegiatan);
     }
 
     public String getNim() {
@@ -110,6 +129,14 @@ public class PoinModel {
 
     public void setNamaKegiatan(String namaKegiatan) {
         this.namaKegiatan = new SimpleStringProperty(namaKegiatan);
+    }
+
+    public String getPoinKegiatan() {
+        return poinKegiatan.get();
+    }
+
+    public void setPoinKegiatan(String poinKegiatan) {
+        this.poinKegiatan = new SimpleStringProperty(poinKegiatan);
     }
 
     public String getFotoSertif() {

@@ -27,7 +27,7 @@
             <HBox prefHeight="100.0" prefWidth="333.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="180.0" text="Melihat Skema Kelulusan" />
-                  <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="180.0" text="Melihat History Poin" />
+                  <Button mnemonicParsing="false" onMouseClicked="#melihatHistory" prefHeight="100.0" prefWidth="180.0" text="Melihat History Poin" />
                </children>
             </HBox>
          </children>

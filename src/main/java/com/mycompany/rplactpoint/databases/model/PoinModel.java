@@ -56,7 +56,7 @@ public class PoinModel {
         this.poinKegiatan = new SimpleIntegerProperty(poinKegiatan);
         this.fotoSertif = new SimpleStringProperty(fotoSertif);
     }
-
+    
     public int getIndex() {
         return index.get();
     }

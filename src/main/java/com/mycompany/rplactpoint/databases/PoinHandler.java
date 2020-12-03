@@ -91,4 +91,30 @@ public class PoinHandler extends connect {
             System.out.println(e.getMessage());
         }
     }
+    
+    public ObservableList<PoinModel> getHistory() {        
+        String sql = "SELECT namaKegiatan, jenisKegiatan, tanggalKegiatan, tingkatKegiatan, poinKegiatan FROM poin";
+        
+        try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
+            ResultSet rs  = pstmt.executeQuery();
+            
+            if(rs == null) {
+                return null;
+            } else {
+                List<PoinModel> list = new ArrayList<>();
+                int index = 1;
+                while(rs.next()) {
+                    list.add(new PoinModel(index, rs.getInt("idPoin"), rs.getString("nim"), rs.getString("nama"), rs.getString("tanggal"), rs.getString("tanggalKegiatan"), rs.getString("jenisKegiatan"), rs.getString("sebagaiKegiatan"), rs.getString("tingkatKegiatan"), rs.getString("namaKegiatan"), rs.getInt("poinKegiatan"), rs.getString("fotoSertif")));
+                    index++;
+                }
+                ObservableList<PoinModel> poin = FXCollections.observableList(list);
+                return poin;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+        
+      
 }

@@ -38,4 +38,7 @@ public class MahasiswaController implements Initializable {
     public void melihatFeeds() throws IOException {
         App.setRoot("melihatFeeds");
     }
+    public void melihatHistory() throws IOException {
+        App.setRoot("melihatHistory");
+    }
 }

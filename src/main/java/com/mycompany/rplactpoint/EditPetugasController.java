@@ -28,14 +28,9 @@ public class EditPetugasController implements Initializable {
 
    
     @FXML Text loggedIn;
-    TextField username;
-    PasswordField password;
-    @FXML
-    private TextField judul;
-    @FXML
-    private TextArea deskripsi;
-    @FXML
-    private TextField link;
+    @FXML TextField username;
+    @FXML PasswordField password;
+    
     /**
      * Initializes the controller class.
      */

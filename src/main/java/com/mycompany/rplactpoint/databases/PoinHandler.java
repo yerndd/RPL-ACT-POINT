@@ -92,8 +92,8 @@ public class PoinHandler extends connect {
         }
     }
     
-    public ObservableList<PoinModel> getHistory() {        
-        String sql = "SELECT namaKegiatan, jenisKegiatan, tanggalKegiatan, tingkatKegiatan, poinKegiatan FROM poin";
+    public ObservableList<PoinModel> getHistory(String nim) {        
+        String sql = "SELECT * FROM poin WHERE nim='"+nim+"'";
         
         try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
             ResultSet rs  = pstmt.executeQuery();
@@ -104,17 +104,26 @@ public class PoinHandler extends connect {
                 List<PoinModel> list = new ArrayList<>();
                 int index = 1;
                 while(rs.next()) {
-                    list.add(new PoinModel(index, rs.getInt("idPoin"), rs.getString("nim"), rs.getString("nama"), rs.getString("tanggal"), rs.getString("tanggalKegiatan"), rs.getString("jenisKegiatan"), rs.getString("sebagaiKegiatan"), rs.getString("tingkatKegiatan"), rs.getString("namaKegiatan"), rs.getInt("poinKegiatan"), rs.getString("fotoSertif")));
+                    PoinModel temp = new PoinModel();
+                    temp.setIndex(index);     
+                    temp.setTanggalKegiatan(rs.getString("tanggalKegiatan"));
+                    temp.setJenisKegiatan(rs.getString("jenisKegiatan"));
+                    temp.setNamaKegiatan(rs.getString("namaKegiatan"));
+                    temp.setTingkatKegiatan(rs.getString("tingkatKegiatan"));
+                    temp.setPoinKegiatan(rs.getInt("poinKegiatan"));
+                                   
+                    list.add(temp);
+                    
                     index++;
                 }
-                ObservableList<PoinModel> poin = FXCollections.observableList(list);
-                return poin;
+               ObservableList<PoinModel> poin = FXCollections.observableList(list);
+               return poin;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
-        
+       
       
 }

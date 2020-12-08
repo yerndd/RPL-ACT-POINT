@@ -57,6 +57,19 @@ public class PoinModel {
         this.fotoSertif = new SimpleStringProperty(fotoSertif);
     }
     
+    public PoinModel(int index, int idPoin, String nim, String nama, String tanggalKegiatan, String jenisKegiatan, String sebagaiKegiatan, String tingkatKegiatan, String namaKegiatan, int poinKegiatan) {
+        this.index = new SimpleIntegerProperty(index);
+        this.idPoin = new SimpleIntegerProperty(idPoin);
+        this.nim = new SimpleStringProperty(nim);
+        this.nama = new SimpleStringProperty(nama);
+        this.tanggalKegiatan = new SimpleStringProperty(tanggalKegiatan);
+        this.jenisKegiatan = new SimpleStringProperty(jenisKegiatan);
+        this.sebagaiKegiatan = new SimpleStringProperty(sebagaiKegiatan);
+        this.tingkatKegiatan = new SimpleStringProperty(tingkatKegiatan);
+        this.namaKegiatan = new SimpleStringProperty(namaKegiatan);
+        this.poinKegiatan = new SimpleIntegerProperty(poinKegiatan);
+    }
+    
     public int getIndex() {
         return index.get();
     }

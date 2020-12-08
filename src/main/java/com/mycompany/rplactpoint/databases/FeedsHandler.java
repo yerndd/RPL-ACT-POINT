@@ -103,7 +103,8 @@ public class FeedsHandler extends connect {
         try (PreparedStatement pstmt = super.getConn().prepareStatement(sql)) {
             pstmt.setString(1, data.getJudulKegiatan());
             pstmt.setString(2, data.getDeskripsiKegiatan());
-            pstmt.setString(3, from.getLinkKegiatan());
+            pstmt.setString(3, data.getLinkKegiatan());
+            pstmt.setString(4, from.getJudulKegiatan());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

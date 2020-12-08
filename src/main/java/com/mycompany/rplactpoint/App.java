@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import java.io.IOException;
 import com.mycompany.rplactpoint.databases.model.UserModel;
+import com.mycompany.rplactpoint.databases.model.FeedsModel;
 
 /**
  * JavaFX App
@@ -20,6 +21,7 @@ public class App extends Application {
     private TableView table = new TableView();
     public static UserModel loggedIn;
     public static UserModel userEdit;
+    public static FeedsModel feedEdit;
     public static Stage stageee;
     
     @FXML private TableView<UserModel> tableView;

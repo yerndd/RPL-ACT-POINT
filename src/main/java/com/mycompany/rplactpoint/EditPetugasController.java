@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
@@ -25,9 +26,16 @@ import javafx.scene.text.Text;
  */
 public class EditPetugasController implements Initializable {
 
+   
     @FXML Text loggedIn;
-    @FXML TextField username;
-    @FXML PasswordField password;
+    TextField username;
+    PasswordField password;
+    @FXML
+    private TextField judul;
+    @FXML
+    private TextArea deskripsi;
+    @FXML
+    private TextField link;
     /**
      * Initializes the controller class.
      */
@@ -37,6 +45,7 @@ public class EditPetugasController implements Initializable {
         loggedIn.setText(App.loggedIn.getUsernameUser());
     }
     
+    @FXML
     public void editPetugas() throws IOException {
         UserHandler tbUser = new UserHandler();
         UserModel edit = new UserModel(username.getText(), new SHA1Hash(password.getText()).getHasil(), 1);
@@ -62,6 +71,7 @@ public class EditPetugasController implements Initializable {
         App.setRoot("listPetugas");
     }
     
+    @FXML
     public void kembali() throws IOException {
         App.setRoot("listPetugas");
     }

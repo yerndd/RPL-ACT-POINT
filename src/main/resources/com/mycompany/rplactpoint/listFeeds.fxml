@@ -24,7 +24,7 @@
                 <TableColumn fx:id="judul" prefWidth="92.0" text="Judul" />
                 <TableColumn fx:id="deskripsi" prefWidth="238.0" text="Deskripsi" />
                 <TableColumn fx:id="link" prefWidth="111.0" text="Link Kegiatan" />
-                <TableColumn fx:id="edit" prefWidth="118.0" text="Edit" />
+                <TableColumn fx:id="edit" prefWidth="118.0" text="Aksi" />
               </columns>
             </TableView>
          </children>

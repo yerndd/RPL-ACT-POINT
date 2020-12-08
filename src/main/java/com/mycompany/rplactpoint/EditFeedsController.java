@@ -7,70 +7,66 @@ package com.mycompany.rplactpoint;
 
 import com.mycompany.rplactpoint.databases.FeedsHandler;
 import com.mycompany.rplactpoint.databases.model.FeedsModel;
-import com.mycompany.rplactpoint.utilities.SHA1Hash;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
-import javafx.scene.text.Text;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+
 /**
  * FXML Controller class
  *
  * @author Me
  */
-public class TambahFeedsController implements Initializable {
-
-
+public class EditFeedsController implements Initializable {
+    
     @FXML Text loggedIn;
     @FXML TextField judul;
     @FXML TextArea deskripsi;
     @FXML TextField link;
-    
-    private Alert alert;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        judul.setText(App.feedEdit.getJudulKegiatan());
         loggedIn.setText(App.loggedIn.getUsernameUser());
-    }   
-
-    public void tambah() throws IOException { 
-        FeedsHandler tbFeeds = new FeedsHandler();
-        FeedsModel tambah = new FeedsModel(judul.getText(), deskripsi.getText(), link.getText());
-        FeedsModel dapat = tbFeeds.getJudulKegiatan(tambah);
+    }  
+    
+    @FXML
+    public void editFeeds() throws IOException {
+        FeedsHandler tbUser = new FeedsHandler();
+        FeedsModel edit = new FeedsModel(judul.getText(), deskripsi.getText(), link.getText());
+        FeedsModel dapat = tbUser.getJudulKegiatan(edit);
         if(dapat != null) {
-            if(dapat.getJudulKegiatan() == null && dapat.getDeskripsiKegiatan() == null) {
+            if(dapat.getJudulKegiatan()== null) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Gagal");
                 alert.setHeaderText(null);
-                alert.setContentText("Kegiatan dengan judul tersebut sudah ada");
+                alert.setContentText("Feeds dengan judul tersebut sudah ada");
                 alert.showAndWait();
                 return;
             }
         }
-        tbFeeds.tambahFeeds(tambah);
+        tbUser.editFeeds(edit, App.feedEdit);
         
-        alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Berhasil");
         alert.setHeaderText(null);
-        alert.setContentText("Feeds Berhasil ditambahkan");
+        alert.setContentText("Feeds Berhasil diubah");
         alert.showAndWait();
 
-        App.setRoot("tugasPetugas");
+        App.setRoot("listFeeds");
     }
     
+    @FXML
     public void kembali() throws IOException {
-        App.setRoot("tugasPetugas");
+        App.setRoot("listFeeds");
     }
-
+    
 }

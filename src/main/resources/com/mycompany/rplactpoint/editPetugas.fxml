@@ -8,6 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.rplactpoint.EditPetugasController">
@@ -20,7 +21,12 @@
       </ImageView>
       <VBox layoutX="49.0" layoutY="100.0" prefHeight="261.0" prefWidth="500.0">
          <children>
-            <TextField alignment="CENTER" text="EDIT PETUGAS" />
+            <Separator prefWidth="200.0" />
+            <Text fx:id="loggedIn1" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT PETUGAS" textAlignment="CENTER" wrappingWidth="499.4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
             <Separator prefWidth="200.0" />
             <TextField fx:id="username" promptText="Masukkan Username Baru Petugas" />
             <PasswordField fx:id="password" promptText="Masukkan Password Baru Petugas" />

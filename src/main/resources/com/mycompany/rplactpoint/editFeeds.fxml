@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.rplactpoint.EditFeedsController">
+   <children>
+      <Button layoutX="532.0" layoutY="44.0" mnemonicParsing="false" onMouseClicked="#kembali" text="Kembali" />
+      <ImageView fitHeight="58.0" fitWidth="191.0" layoutX="20.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@huhu.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="49.0" layoutY="100.0" prefHeight="261.0" prefWidth="500.0">
+         <children>
+            <TextField alignment="CENTER" text="EDIT FEEDS" />
+            <Separator prefWidth="200.0" />
+            <TextField fx:id="judul" promptText="Masukkan judul kegiatan" />
+            <TextArea fx:id="deskripsi" prefHeight="200.0" prefWidth="200.0" promptText="Masukkan deskripsi kegiatan" />
+            <TextField fx:id="link" promptText="Masukkan link kegiatan" />
+            <Button mnemonicParsing="false" onMouseClicked="#editFeeds" text="UPDATE" />
+         </children>
+      </VBox>
+      <Text fx:id="loggedIn" layoutX="399.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" wrappingWidth="186.39999999999998" />
+   </children>
+</AnchorPane>

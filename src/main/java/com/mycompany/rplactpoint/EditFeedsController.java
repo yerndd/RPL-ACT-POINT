@@ -35,6 +35,8 @@ public class EditFeedsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         judul.setText(App.feedEdit.getJudulKegiatan());
+        deskripsi.setText(App.feedEdit.getDeskripsiKegiatan());
+        link.setText(App.feedEdit.getLinkKegiatan());
         loggedIn.setText(App.loggedIn.getUsernameUser());
     }  
     

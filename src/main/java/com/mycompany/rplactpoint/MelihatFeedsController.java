@@ -37,6 +37,7 @@ public class MelihatFeedsController implements Initializable {
     @FXML TableColumn<FeedsModel, String> judulKegiatan;
     @FXML TableColumn<FeedsModel, String> deskripsiKegiatan;
     @FXML TableColumn<FeedsModel, String> linkKegiatan;
+    @FXML TableColumn<FeedsModel, Void> detailKegiatan;
 
     /**
      * Initializes the controller class.
@@ -49,8 +50,41 @@ public class MelihatFeedsController implements Initializable {
         deskripsiKegiatan.setCellValueFactory(new PropertyValueFactory<>("deskripsiKegiatan"));
         linkKegiatan.setCellValueFactory(new PropertyValueFactory<>("linkKegiatan"));
         melihatFeedsTable.setItems(studentsModels);
+        
+        Callback<TableColumn<FeedsModel, Void>, TableCell<FeedsModel, Void>> cellFactory = new Callback<TableColumn<FeedsModel, Void>, TableCell<FeedsModel, Void>>() {
+            @Override
+            public TableCell<FeedsModel, Void> call(final TableColumn<FeedsModel, Void> param) {
+                final TableCell<FeedsModel, Void> cell = new TableCell<FeedsModel, Void>() {
+                    private final Button btnDetail = new Button("Detail");
+                    private final HBox box = new HBox();
+                    {
+                        btnDetail.setOnAction((ActionEvent event) -> {
+                            FeedsModel data = getTableView().getItems().get(getIndex());
+                            try {
+                                App.feedEdit = data;
+                                App.setRoot("detailFeeds");
+                            } catch(IOException e) {
+                                System.out.print(e.getMessage());
+                            }
+                        });
+                        
+                    }
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        box.getChildren().addAll(btnDetail);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(box);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        detailKegiatan.setCellFactory(cellFactory);
     }
-    
     
     public void kembali() throws IOException {
         App.setRoot("mahasiswa");

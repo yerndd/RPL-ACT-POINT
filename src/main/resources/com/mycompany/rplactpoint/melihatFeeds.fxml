@@ -21,9 +21,10 @@
          <children>
             <TableView fx:id="melihatFeedsTable" prefHeight="287.0" prefWidth="560.0">
                <columns>
-                  <TableColumn fx:id="judulKegiatan" prefWidth="160.79998779296875" text="Judul" />
-                  <TableColumn fx:id="deskripsiKegiatan" prefWidth="242.4000244140625" text="Deskripsi" />
-                  <TableColumn fx:id="linkKegiatan" prefWidth="157.5999755859375" text="Link Kegiatan" />
+                  <TableColumn fx:id="judulKegiatan" prefWidth="136.0" text="Judul" />
+                  <TableColumn fx:id="deskripsiKegiatan" prefWidth="174.0" text="Deskripsi" />
+                  <TableColumn fx:id="linkKegiatan" prefWidth="142.0" text="Link Kegiatan" />
+                  <TableColumn fx:id="detailKegiatan" prefWidth="106.0" text="Aksi" />
                </columns>
             </TableView>
          </children>

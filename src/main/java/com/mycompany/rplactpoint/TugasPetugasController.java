@@ -41,6 +41,10 @@ public class TugasPetugasController implements Initializable {
         App.setRoot("listFeeds");
     }
     
+    public void laporanPoinMahasiswa() throws IOException {
+        App.setRoot("laporanPoinMahasiswa");
+    }
+    
     public void tambahFeeds() throws IOException {
         App.setRoot("tambahFeeds");
     }

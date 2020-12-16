@@ -7,14 +7,20 @@ package com.mycompany.rplactpoint;
 
 import com.mycompany.rplactpoint.databases.FeedsHandler;
 import com.mycompany.rplactpoint.databases.model.FeedsModel;
+import com.mycompany.rplactpoint.utilities.SHA1Hash;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 /**
@@ -32,6 +38,9 @@ public class EditFeedsController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    private Alert alert;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         judul.setText(App.feedEdit.getJudulKegiatan());
@@ -42,19 +51,20 @@ public class EditFeedsController implements Initializable {
     
     @FXML
     public void editFeeds() throws IOException {
+        
+        if(judul.getText().equals("") || deskripsi.getText().equals("") || link.getText().equals("")){
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Gagal");
+            alert.setHeaderText(null);
+            alert.setContentText("Isikan semua data");
+            alert.showAndWait();
+            return;
+        }
+        
         FeedsHandler tbUser = new FeedsHandler();
         FeedsModel edit = new FeedsModel(judul.getText(), deskripsi.getText(), link.getText());
         FeedsModel dapat = tbUser.getJudulKegiatan(edit);
-        if(dapat != null) {
-            if(dapat.getJudulKegiatan()== null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Gagal");
-                alert.setHeaderText(null);
-                alert.setContentText("Feeds dengan judul tersebut sudah ada");
-                alert.showAndWait();
-                return;
-            }
-        }
+        
         tbUser.editFeeds(edit, App.feedEdit);
         
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

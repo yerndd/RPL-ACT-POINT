@@ -45,18 +45,26 @@ public class TambahFeedsController implements Initializable {
     }   
 
     public void tambah() throws IOException { 
+        
+        if(judul.getText().equals("") || deskripsi.getText().equals("") || link.getText().equals("")){
+        alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Gagal");
+        alert.setHeaderText(null);
+        alert.setContentText("Isikan semua data");
+        alert.showAndWait();
+        return;
+        }
+        
         FeedsHandler tbFeeds = new FeedsHandler();
         FeedsModel tambah = new FeedsModel(judul.getText(), deskripsi.getText(), link.getText());
         FeedsModel dapat = tbFeeds.getJudulKegiatan(tambah);
         if(dapat != null) {
-            if(dapat.getJudulKegiatan() == null && dapat.getDeskripsiKegiatan() == null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Gagal");
-                alert.setHeaderText(null);
-                alert.setContentText("Kegiatan dengan judul tersebut sudah ada");
-                alert.showAndWait();
-                return;
-            }
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Gagal");
+            alert.setHeaderText(null);
+            alert.setContentText("Kegiatan dengan judul tersebut sudah ada");
+            alert.showAndWait();
+            return;
         }
         tbFeeds.tambahFeeds(tambah);
         

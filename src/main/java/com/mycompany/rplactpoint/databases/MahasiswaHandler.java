@@ -6,15 +6,12 @@
 package com.mycompany.rplactpoint.databases;
 
 import com.mycompany.rplactpoint.databases.model.MahasiswaModel;
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -61,15 +58,14 @@ public class MahasiswaHandler extends connect {
     
     private List<MahasiswaModel> readMahasiswaCSV() {
         List<MahasiswaModel> users = new ArrayList<>();
-        Path pathToFile = Paths.get("./csv/mahasiswa.csv");
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
-            String line = br.readLine();
-            while (line != null) {
-                String[] attributes = line.split(",");
-                MahasiswaModel user = new MahasiswaModel(0, 0, attributes[0], attributes[1], 0, "");
+        String csvFile = "./csv/mahasiswa.csv";
+        try (Scanner scanner = new Scanner(new File(csvFile))) {
+            while (scanner.hasNext()) {
+                String[] line = scanner.nextLine().split(",");
+                MahasiswaModel user = new MahasiswaModel(0, 0, line[0], line[1], 0, "");
                 users.add(user);
-                line = br.readLine();
             }
+            scanner.close();
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }

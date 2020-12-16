@@ -8,14 +8,11 @@ package com.mycompany.rplactpoint.databases;
 import java.sql.*;
 import com.mycompany.rplactpoint.utilities.SHA1Hash;
 import com.mycompany.rplactpoint.databases.model.UserModel;
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -56,11 +53,7 @@ public class UserHandler extends connect {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("Success");
-        
-        UserModel mahasiswa;
-        
-        try (PreparedStatement pstmt = super.getConn().prepareStatement(sql)) {
+        try (PreparedStatement pstmt = super.getConn().prepareStatement(sql)) {    
             List<UserModel> users = readUserCSV();
             for (UserModel user : users) {
                 pstmt.setString(1, user.getUsernameUser());
@@ -80,17 +73,16 @@ public class UserHandler extends connect {
     
     private List<UserModel> readUserCSV() {
         List<UserModel> users = new ArrayList<>();
-        Path pathToFile = Paths.get("./csv/mahasiswa.csv");
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
-            String line = br.readLine();
-            while (line != null) {
-                String[] attributes = line.split(",");
-                UserModel user = new UserModel(0, 0, 2, attributes[0],  new SHA1Hash(attributes[2]).getHasil());
+        String csvFile = "./csv/mahasiswa.csv";
+        try (Scanner scanner = new Scanner(new File(csvFile))) {
+            while (scanner.hasNext()) {
+                String[] line = scanner.nextLine().split(",");
+                UserModel user = new UserModel(0, 0, 2, line[0],  new SHA1Hash(line[2]).getHasil());
                 users.add(user);
-                line = br.readLine();
             }
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+            scanner.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return users;
     }

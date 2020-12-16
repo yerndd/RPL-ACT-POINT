@@ -85,7 +85,7 @@ public class UserHandler extends connect {
             String line = br.readLine();
             while (line != null) {
                 String[] attributes = line.split(",");
-                UserModel user = new UserModel(0, 0, 2, attributes[0], attributes[2]);
+                UserModel user = new UserModel(0, 0, 2, attributes[0],  new SHA1Hash(attributes[2]).getHasil());
                 users.add(user);
                 line = br.readLine();
             }

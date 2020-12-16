@@ -98,6 +98,16 @@ public class RequestPoinController implements Initializable {
     }
     
     public void requestPoin() throws IOException {
+        
+        if(nim.getText().equals("") || namaKegiatan.getText().equals("") || tanggalKegiatan.getText().equals("")){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Gagal Request Poin");
+            alert.setHeaderText(null);
+            alert.setContentText("Request Poin Harus terisi semua");
+            alert.showAndWait();
+            return;
+        }
+        
         PoinHandler tbPoin = new PoinHandler();
         MahasiswaHandler tbMahasiswa = new MahasiswaHandler();
         SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy");

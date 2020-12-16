@@ -91,7 +91,7 @@ public class PoinHandler extends connect {
     }
     
     public ObservableList<PoinModel> getHistory(String nim) {        
-        String sql = "SELECT * FROM poin, mahasiswa WHERE poin.nim=mahasiswa.nim AND mahasiswa.nim='"+nim+"'";
+        String sql = "SELECT * FROM poin, mahasiswa WHERE poin.nim=mahasiswa.nim AND poin.poinKegiatan > 0 AND mahasiswa.nim='"+nim+"'";
         
         try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
             ResultSet rs  = pstmt.executeQuery();

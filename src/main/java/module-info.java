@@ -8,6 +8,7 @@ module com.mycompany.rplactpoint {
     requires org.apache.commons.codec;
     requires commons.codec;
     requires sqlite.jdbc;
+    requires jasperreports;
     requires javafx.controlsEmpty;
     requires javafx.controls;
     requires javafx.graphicsEmpty;

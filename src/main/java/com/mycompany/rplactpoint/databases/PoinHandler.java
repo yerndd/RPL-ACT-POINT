@@ -5,6 +5,7 @@
  */
 package com.mycompany.rplactpoint.databases;
 
+import com.mycompany.rplactpoint.databases.model.MahasiswaModel;
 import java.sql.*;
 import com.mycompany.rplactpoint.databases.model.PoinModel;
 import java.util.ArrayList;
@@ -22,7 +23,6 @@ public class PoinHandler extends connect {
         String sql = "CREATE TABLE IF NOT EXISTS poin ("
                 + "idPoin INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "nim TEXT NOT NULL,"
-                + "nama TEXT NOT NULL,"
                 + "jenisKegiatan TEXT NOT NULL,"
                 + "tanggalKegiatan TEXT NOT NULL,"
                 + "sebagaiKegiatan TEXT NOT NULL,"
@@ -41,15 +41,14 @@ public class PoinHandler extends connect {
     }
     
     public PoinModel getPoin(PoinModel login) {        
-        String sql = "SELECT * FROM poin WHERE nim = ? AND nama = ? AND jenisKegiatan = ? AND sebagaiKegiatan = ? AND tingkatKegiatan = ? AND namaKegiatan = ?";
+        String sql = "SELECT * FROM poin WHERE nim = ? AND jenisKegiatan = ? AND sebagaiKegiatan = ? AND tingkatKegiatan = ? AND namaKegiatan = ?";
         
         try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
-            pstmt.setString(1, login.getNim());
-            pstmt.setString(2, login.getNama());
-            pstmt.setString(3, login.getJenisKegiatan());
-            pstmt.setString(4, login.getSebagaiKegiatan());
-            pstmt.setString(5, login.getTingkatKegiatan());
-            pstmt.setString(6, login.getNamaKegiatan());
+            pstmt.setString(1, login.getMahasiswa().getNim());
+            pstmt.setString(2, login.getJenisKegiatan());
+            pstmt.setString(3, login.getSebagaiKegiatan());
+            pstmt.setString(4, login.getTingkatKegiatan());
+            pstmt.setString(5, login.getNamaKegiatan());
             ResultSet rs  = pstmt.executeQuery();
             
             if(rs == null) {
@@ -59,7 +58,7 @@ public class PoinHandler extends connect {
                 PoinModel user = null;
                 while(rs.next()) {
                     if(size == 0) {
-                        user = new PoinModel(0, rs.getInt("idPoin"), rs.getString("nim"), rs.getString("nama"), rs.getString("tanggal"), rs.getString("tanggalKegiatan"), rs.getString("jenisKegiatan"), rs.getString("sebagaiKegiatan"), rs.getString("tingkatKegiatan"), rs.getString("namaKegiatan"), rs.getInt("poinKegiatan"), rs.getString("fotoSertif"));
+                        user = new PoinModel(0, rs.getInt("idPoin"), login.getMahasiswa(), rs.getString("tanggal"), rs.getString("tanggalKegiatan"), rs.getString("jenisKegiatan"), rs.getString("sebagaiKegiatan"), rs.getString("tingkatKegiatan"), rs.getString("namaKegiatan"), rs.getInt("poinKegiatan"), rs.getString("fotoSertif"));
                     } else {
                         user = new PoinModel();
                         break;
@@ -75,17 +74,16 @@ public class PoinHandler extends connect {
     }
     
     public void tambahRequest(PoinModel tambah) {
-        String sql = "INSERT INTO poin (nim, nama, jenisKegiatan, tanggalKegiatan, sebagaiKegiatan, tingkatKegiatan, namaKegiatan, poinKegiatan, fotoSertif) VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO poin (nim, jenisKegiatan, tanggalKegiatan, sebagaiKegiatan, tingkatKegiatan, namaKegiatan, poinKegiatan, fotoSertif) VALUES (?,?,?,?,?,?,?,?)";
         try (PreparedStatement pstmt = super.getConn().prepareStatement(sql)) {
-            pstmt.setString(1, tambah.getNim());
-            pstmt.setString(2, tambah.getNama());
-            pstmt.setString(3, tambah.getJenisKegiatan());
-            pstmt.setString(4, tambah.getTanggalKegiatan());
-            pstmt.setString(5, tambah.getSebagaiKegiatan());
-            pstmt.setString(6, tambah.getTingkatKegiatan());
-            pstmt.setString(7, tambah.getNamaKegiatan());
-            pstmt.setInt(8, tambah.getPoinKegiatan());
-            pstmt.setString(9, tambah.getFotoSertif());
+            pstmt.setString(1, tambah.getMahasiswa().getNim());
+            pstmt.setString(2, tambah.getJenisKegiatan());
+            pstmt.setString(3, tambah.getTanggalKegiatan());
+            pstmt.setString(4, tambah.getSebagaiKegiatan());
+            pstmt.setString(5, tambah.getTingkatKegiatan());
+            pstmt.setString(6, tambah.getNamaKegiatan());
+            pstmt.setInt(7, tambah.getPoinKegiatan());
+            pstmt.setString(8, tambah.getFotoSertif());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -93,7 +91,7 @@ public class PoinHandler extends connect {
     }
     
     public ObservableList<PoinModel> getHistory(String nim) {        
-        String sql = "SELECT * FROM poin WHERE nim='"+nim+"'";
+        String sql = "SELECT * FROM poin, mahasiswa WHERE poin.nim=mahasiswa.nim AND mahasiswa.nim='"+nim+"'";
         
         try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
             ResultSet rs  = pstmt.executeQuery();
@@ -105,7 +103,9 @@ public class PoinHandler extends connect {
                 int index = 1;
                 while(rs.next()) {
                     PoinModel temp = new PoinModel();
-                    temp.setIndex(index);     
+                    MahasiswaModel tempMah = new MahasiswaModel(0, rs.getInt("idMahasiswa"), rs.getString("nim"), rs.getString("nama"), rs.getInt("totalPoin"), rs.getString("foto"));
+                    temp.setIndex(index);
+                    temp.setMahasiswa(tempMah);  
                     temp.setTanggalKegiatan(rs.getString("tanggalKegiatan"));
                     temp.setJenisKegiatan(rs.getString("jenisKegiatan"));
                     temp.setNamaKegiatan(rs.getString("namaKegiatan"));
@@ -126,7 +126,7 @@ public class PoinHandler extends connect {
     }
     
     public ObservableList<PoinModel> getLaporan() {        
-        String sql = "SELECT * FROM poin";
+        String sql = "SELECT * FROM poin, mahasiswa WHERE poin.nim=mahasiswa.nim";
         
         try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
             ResultSet rs  = pstmt.executeQuery();
@@ -138,8 +138,9 @@ public class PoinHandler extends connect {
                 int index = 1;
                 while(rs.next()) {
                     PoinModel temp = new PoinModel();
+                    MahasiswaModel tempMah = new MahasiswaModel(0, rs.getInt("idMahasiswa"), rs.getString("nim"), rs.getString("nama"), rs.getInt("totalPoin"), rs.getString("foto"));
                     temp.setIndex(index); 
-                    temp.setNama(rs.getString("nama"));
+                    temp.setMahasiswa(tempMah);
                     temp.setTanggalKegiatan(rs.getString("tanggalKegiatan"));
                     temp.setJenisKegiatan(rs.getString("jenisKegiatan"));
                     temp.setNamaKegiatan(rs.getString("namaKegiatan"));

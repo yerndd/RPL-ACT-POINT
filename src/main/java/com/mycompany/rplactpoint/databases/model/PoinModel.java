@@ -16,8 +16,7 @@ public class PoinModel {
     
     private SimpleIntegerProperty index;
     private SimpleIntegerProperty idPoin;
-    private SimpleStringProperty nim;
-    private SimpleStringProperty nama;
+    private MahasiswaModel mahasiswa;
     private SimpleStringProperty tanggal;
     private SimpleStringProperty tanggalKegiatan;
     private SimpleStringProperty jenisKegiatan;
@@ -30,8 +29,7 @@ public class PoinModel {
     public PoinModel() {
         this.index = null;
         this.idPoin = null;
-        this.nim = null;
-        this.nama = null;
+        this.mahasiswa = null;
         this.tanggal = null;
         this.tanggalKegiatan = null;
         this.jenisKegiatan = null;
@@ -42,11 +40,10 @@ public class PoinModel {
         this.fotoSertif = null;
     }
 
-    public PoinModel(int index, int idPoin, String nim, String nama, String tanggal, String tanggalKegiatan, String jenisKegiatan, String sebagaiKegiatan, String tingkatKegiatan, String namaKegiatan, int poinKegiatan, String fotoSertif) {
+    public PoinModel(int index, int idPoin, MahasiswaModel mahasiswa, String tanggal, String tanggalKegiatan, String jenisKegiatan, String sebagaiKegiatan, String tingkatKegiatan, String namaKegiatan, int poinKegiatan, String fotoSertif) {
         this.index = new SimpleIntegerProperty(index);
         this.idPoin = new SimpleIntegerProperty(idPoin);
-        this.nim = new SimpleStringProperty(nim);
-        this.nama = new SimpleStringProperty(nama);
+        this.mahasiswa = mahasiswa;
         this.tanggal = new SimpleStringProperty(tanggal);
         this.tanggalKegiatan = new SimpleStringProperty(tanggalKegiatan);
         this.jenisKegiatan = new SimpleStringProperty(jenisKegiatan);
@@ -57,11 +54,10 @@ public class PoinModel {
         this.fotoSertif = new SimpleStringProperty(fotoSertif);
     }
     
-    public PoinModel(int index, int idPoin, String nim, String nama, String tanggalKegiatan, String jenisKegiatan, String sebagaiKegiatan, String tingkatKegiatan, String namaKegiatan, int poinKegiatan) {
+    public PoinModel(int index, int idPoin, MahasiswaModel mahasiswa, String nama, String tanggalKegiatan, String jenisKegiatan, String sebagaiKegiatan, String tingkatKegiatan, String namaKegiatan, int poinKegiatan) {
         this.index = new SimpleIntegerProperty(index);
         this.idPoin = new SimpleIntegerProperty(idPoin);
-        this.nim = new SimpleStringProperty(nim);
-        this.nama = new SimpleStringProperty(nama);
+        this.mahasiswa = mahasiswa;
         this.tanggalKegiatan = new SimpleStringProperty(tanggalKegiatan);
         this.jenisKegiatan = new SimpleStringProperty(jenisKegiatan);
         this.sebagaiKegiatan = new SimpleStringProperty(sebagaiKegiatan);
@@ -102,20 +98,12 @@ public class PoinModel {
         this.tanggalKegiatan = new SimpleStringProperty(tanggalKegiatan);
     }
 
-    public String getNim() {
-        return nim.get();
+    public MahasiswaModel getMahasiswa() {
+        return mahasiswa;
     }
 
-    public void setNim(String nim) {
-        this.nim = new SimpleStringProperty(nim);
-    }
-
-    public String getNama() {
-        return nama.get();
-    }
-
-    public void setNama(String nama) {
-        this.nama = new SimpleStringProperty(nama);
+    public void setMahasiswa(MahasiswaModel mahasiswa) {
+        this.mahasiswa = mahasiswa;
     }
 
     public String getJenisKegiatan() {

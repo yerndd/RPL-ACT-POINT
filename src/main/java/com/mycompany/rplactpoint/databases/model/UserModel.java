@@ -58,6 +58,14 @@ public class UserModel {
         this.passwordUser = new SimpleStringProperty(passwordUser);
         this.levelUser = new SimpleIntegerProperty(levelUser);
     }
+    
+    public UserModel(int index, int idUser, int levelUser, String usernameUser, String passwordUser) {
+        this.index = new SimpleIntegerProperty(index);
+        this.idUser = new SimpleIntegerProperty(idUser);
+        this.levelUser = new SimpleIntegerProperty(levelUser);
+        this.usernameUser = new SimpleStringProperty(usernameUser);
+        this.passwordUser = new SimpleStringProperty(passwordUser);
+    }
 
     public int getIndex() {
         return index.get();

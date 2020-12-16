@@ -28,11 +28,6 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nama">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Jenis Kegiatan">
                      <VBox.margin>
                         <Insets top="14.0" />
@@ -68,10 +63,6 @@
             <VBox prefHeight="183.0" prefWidth="202.0">
                <children>
                   <TextField fx:id="nim" promptText="ex 71200000">
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin></TextField>
-                  <TextField fx:id="nama" promptText="ex. Dadang Sunarno">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin></TextField>

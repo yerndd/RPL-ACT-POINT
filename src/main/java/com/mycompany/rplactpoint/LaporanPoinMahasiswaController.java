@@ -141,7 +141,7 @@ public class LaporanPoinMahasiswaController implements Initializable {
                 if(laporanModel.getNamaKegiatan().toLowerCase().startsWith(cari.toLowerCase())){
                     laporanTable.getItems().add(laporanModel);
                     }
-                else if(laporanModel.getNama().toLowerCase().startsWith(cari.toLowerCase())){
+                else if(laporanModel.getMahasiswa().getNama().toLowerCase().startsWith(cari.toLowerCase())){
                     laporanTable.getItems().add(laporanModel);
                 }
                 else if(cari.equals("")){

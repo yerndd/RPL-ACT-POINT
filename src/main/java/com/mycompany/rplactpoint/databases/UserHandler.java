@@ -8,6 +8,12 @@ package com.mycompany.rplactpoint.databases;
 import java.sql.*;
 import com.mycompany.rplactpoint.utilities.SHA1Hash;
 import com.mycompany.rplactpoint.databases.model.UserModel;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -34,53 +40,59 @@ public class UserHandler extends connect {
         }
         
         UserModel admin = new UserModel("admin", new SHA1Hash("admin").getHasil(), 0);
+
+        sql = "INSERT INTO user (usernameUser, passwordUser, levelUser) \n" + 
+                "SELECT ?, ?, ? \n" +
+                "WHERE NOT EXISTS(SELECT 1 FROM user WHERE usernameUser=? AND passwordUser=? AND levelUser=?);";
         
-        sql = "DELETE FROM user WHERE usernameUser = ? AND passwordUser = ? AND levelUser = ?";
-        
-        try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
-            pstmt.setString(1, admin.getUsernameUser());
-            pstmt.setString(2, admin.getPasswordUser());
-            pstmt.setInt(3, admin.getLevelUser());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        sql = "INSERT INTO user (usernameUser, passwordUser, levelUser) VALUES (?,?,?)";
         try (PreparedStatement pstmt = super.getConn().prepareStatement(sql)) {
             pstmt.setString(1, admin.getUsernameUser());
             pstmt.setString(2, admin.getPasswordUser());
             pstmt.setInt(3, admin.getLevelUser());
+            pstmt.setString(4, admin.getUsernameUser());
+            pstmt.setString(5, admin.getPasswordUser());
+            pstmt.setInt(6, admin.getLevelUser());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         System.out.println("Success");
         
-        UserModel mahasiswa = new UserModel("mahasiswa", new SHA1Hash("mahasiswa").getHasil(), 2);
+        UserModel mahasiswa;
         
-        sql = "DELETE FROM user WHERE usernameUser = ? AND passwordUser = ? AND levelUser = ?";
-        
-        try (PreparedStatement pstmt  = super.getConn().prepareStatement(sql)){
-            pstmt.setString(1, mahasiswa.getUsernameUser());
-            pstmt.setString(2, mahasiswa.getPasswordUser());
-            pstmt.setInt(3, mahasiswa.getLevelUser());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        
-        sql = "INSERT INTO user (usernameUser, passwordUser, levelUser) VALUES (?,?,?)";
         try (PreparedStatement pstmt = super.getConn().prepareStatement(sql)) {
-            pstmt.setString(1, mahasiswa.getUsernameUser());
-            pstmt.setString(2, mahasiswa.getPasswordUser());
-            pstmt.setInt(3, mahasiswa.getLevelUser());
-            pstmt.executeUpdate();
+            List<UserModel> users = readUserCSV();
+            for (UserModel user : users) {
+                pstmt.setString(1, user.getUsernameUser());
+                pstmt.setString(2, user.getPasswordUser());
+                pstmt.setInt(3, user.getLevelUser());
+                pstmt.setString(4, user.getUsernameUser());
+                pstmt.setString(5, user.getPasswordUser());
+                pstmt.setInt(6, user.getLevelUser());
+                pstmt.executeUpdate();
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        MahasiswaHandler mahasiswaHandler = new MahasiswaHandler();
         System.out.println("Success");
+    }
     
+    private List<UserModel> readUserCSV() {
+        List<UserModel> users = new ArrayList<>();
+        Path pathToFile = Paths.get("./csv/mahasiswa.csv");
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+            String line = br.readLine();
+            while (line != null) {
+                String[] attributes = line.split(",");
+                UserModel user = new UserModel(0, 0, 2, attributes[0], attributes[2]);
+                users.add(user);
+                line = br.readLine();
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        return users;
     }
     
     public UserModel getLogin(UserModel login) {        

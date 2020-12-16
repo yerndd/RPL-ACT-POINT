@@ -6,6 +6,8 @@
 package com.mycompany.rplactpoint;
 
 import com.mycompany.rplactpoint.databases.PoinHandler;
+import com.mycompany.rplactpoint.databases.MahasiswaHandler;
+import com.mycompany.rplactpoint.databases.model.MahasiswaModel;
 import com.mycompany.rplactpoint.databases.model.PoinModel;
 import java.io.IOException;
 import java.net.URL;
@@ -37,7 +39,6 @@ public class RequestPoinController implements Initializable {
     @FXML Text loggedIn;
     
     @FXML TextField nim;
-    @FXML TextField nama;
     @FXML TextField namaKegiatan;
     @FXML TextField tanggalKegiatan;
     
@@ -98,32 +99,44 @@ public class RequestPoinController implements Initializable {
     
     public void requestPoin() throws IOException {
         PoinHandler tbPoin = new PoinHandler();
+        MahasiswaHandler tbMahasiswa = new MahasiswaHandler();
         SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date(System.currentTimeMillis());
         String tanggal = formatter.format(date);
-        PoinModel tambah;
+        PoinModel tambahPoin;
+        MahasiswaModel tambahMahasiswa;
+        
+        tambahMahasiswa = new MahasiswaModel(0, 0, nim.getText(), "", 0, "");
+        
+        MahasiswaModel dapatMahasiswa = tbMahasiswa.getMahasiswaNim(tambahMahasiswa);
+        if(dapatMahasiswa == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Gagal");
+            alert.setHeaderText(null);
+            alert.setContentText("Mahasiswa dengan nim tersebut tidak ada.");
+            alert.showAndWait();
+            return;
+        }
         if (filePilihan != null) {
             File dest = new File("./assets/"+filePilihan.getName());
             dest.getParentFile().mkdirs(); 
             dest.createNewFile();
             copyFileUsingStream(filePilihan, dest);
-            tambah = new PoinModel(0, 0, nim.getText(), nama.getText(), tanggal, tanggalKegiatan.getText(), jenisKegiatan.getValue().toString(), sebagaiKegiatan.getValue().toString(), tingkatKegiatan.getValue().toString(), namaKegiatan.getText(), 0, filePilihan.getName());
+            tambahPoin = new PoinModel(0, 0, dapatMahasiswa, tanggal, tanggalKegiatan.getText(), jenisKegiatan.getValue().toString(), sebagaiKegiatan.getValue().toString(), tingkatKegiatan.getValue().toString(), namaKegiatan.getText(), 0, filePilihan.getName());
         } else {
-            tambah = new PoinModel(0, 0, nim.getText(), nama.getText(), tanggal, tanggalKegiatan.getText(), jenisKegiatan.getValue().toString(), sebagaiKegiatan.getValue().toString(), tingkatKegiatan.getValue().toString(), namaKegiatan.getText(), 0, "");
+            tambahPoin = new PoinModel(0, 0, dapatMahasiswa, tanggal, tanggalKegiatan.getText(), jenisKegiatan.getValue().toString(), sebagaiKegiatan.getValue().toString(), tingkatKegiatan.getValue().toString(), namaKegiatan.getText(), 0, "");
         }
         
-        PoinModel dapat = tbPoin.getPoin(tambah);
-        if(dapat != null) {
-            if(dapat.getNama() == null && dapat.getNim() == null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Gagal");
-                alert.setHeaderText(null);
-                alert.setContentText("Request tersebut sudah ada.");
-                alert.showAndWait();
-                return;
-            }
+        PoinModel dapatPoin = tbPoin.getPoin(tambahPoin);
+        if(dapatPoin != null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Gagal");
+            alert.setHeaderText(null);
+            alert.setContentText("Request tersebut sudah ada.");
+            alert.showAndWait();
+            return;
         }
-        tbPoin.tambahRequest(tambah);
+        tbPoin.tambahRequest(tambahPoin);
         
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Berhasil");

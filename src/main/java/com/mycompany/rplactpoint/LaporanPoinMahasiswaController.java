@@ -11,6 +11,7 @@ import com.mycompany.rplactpoint.databases.model.PoinModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -63,7 +64,7 @@ public class LaporanPoinMahasiswaController implements Initializable {
             listLaporan = PoinHandler.getLaporan();
             temp = PoinHandler.getLaporan();
             index.setCellValueFactory(new PropertyValueFactory<>("index"));
-            nama.setCellValueFactory(new PropertyValueFactory<>("nama"));
+            nama.setCellValueFactory(celldata -> new ReadOnlyStringWrapper(celldata.getValue().getMahasiswa().getNama()));
             namaKegiatan.setCellValueFactory(new PropertyValueFactory<>("namaKegiatan"));
             jenisKegiatan.setCellValueFactory(new PropertyValueFactory<>("jenisKegiatan"));
             tanggalKegiatan.setCellValueFactory(new PropertyValueFactory<>("tanggalKegiatan"));
